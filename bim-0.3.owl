@@ -1,5 +1,7 @@
 @prefix : <http://www.symbiote-h2020.eu/ontology/bim#> .
 @prefix qu: <http://purl.oclc.org/NET/ssnx/qu/qu#> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -8,6 +10,10 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix unit: <http://www.symbiote-h2020.eu/ontology/bim/unit#> .
+@prefix bim-sm: <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#> .
+@prefix bim-sr: <http://www.symbiote-h2020.eu/ontology/bim/smartresidence#> .
+@prefix bim-ss: <http://www.symbiote-h2020.eu/ontology/bim/smartstadium#> .
+@prefix bim-sy: <http://www.symbiote-h2020.eu/ontology/bim/smartyachting#> .
 @prefix qu-dim: <http://purl.oclc.org/NET/ssnx/qu/dim#> .
 @prefix qu-unit: <http://purl.oclc.org/NET/ssnx/qu/unit#> .
 @prefix property: <http://www.symbiote-h2020.eu/ontology/bim/property#> .
@@ -18,14 +24,46 @@
                                             
                                             rdfs:label "symbIoTe Best Practice Information Model"@en ;
                                             
-                                            owl:versionInfo "v0.3 2017/03/28 12:00:00"^^xsd:string ;
+                                            owl:versionInfo "v0.3 2017/06/22 12:00:00"^^xsd:string ;
                                             
                                             rdfs:comment "Best Practice Information Model of symbIoTe."@en ;
                                             
                                             owl:imports <http://purl.oclc.org/NET/ssnx/qu/qu-rec20> ,
                                                         <http://www.symbiote-h2020.eu/ontology/core> ;
                                             
-                                            owl:versionIRI <http://www.symbiote-h2020.eu/ontology/bim/0.3> .
+                                            owl:versionIRI <http://www.symbiote-h2020.eu/ontology/bim/0.3> ;
+                                            
+                                            owl:imports cnt: .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+###  http://www.symbiote-h2020.eu/ontology/core#hasParameter
+
+core:hasParameter rdf:type owl:AnnotationProperty .
+
+
+
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
+
+
+###  http://www.w3.org/2011/content#ContentAsBase64
+
+cnt:ContentAsBase64 rdf:type rdfs:Datatype .
+
+
+
 
 
 #################################################################
@@ -35,44 +73,171 @@
 #################################################################
 
 
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#checkLevel
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#hasObservationType
 
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#checkLevel> rdf:type owl:ObjectProperty ;
-                                                                  
-                                                                  rdfs:range <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#CheckLevel> ;
-                                                                  
-                                                                  rdfs:domain core:ObservationValue .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#observationType
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#observationType> rdf:type owl:FunctionalProperty ,
-                                                                                owl:ObjectProperty ;
-                                                                       
-                                                                       rdfs:range <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#ObservationType> ;
-                                                                       
-                                                                       rdfs:domain core:Observation .
+bim-sm:hasObservationType rdf:type owl:ObjectProperty ;
+                          
+                          rdfs:range bim-sm:ObservationType ;
+                          
+                          rdfs:domain core:Observation .
 
 
 
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#validity
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#hasPoIType
 
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#validity> rdf:type owl:ObjectProperty ;
-                                                                
-                                                                rdfs:range <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Validity> ;
-                                                                
-                                                                rdfs:domain core:ObservationValue .
+bim-sm:hasPoIType rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:domain bim-sm:PointOfInterest ;
+                  
+                  rdfs:range bim-sm:PointOfInterestType .
 
 
 
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#belongsTo
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#hasAttachment
 
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#belongsTo> rdf:type owl:ObjectProperty ;
-                                                                
-                                                                rdfs:domain core:Location ;
-                                                                
-                                                                rdfs:range core:SymbolicLocation .
+bim-ss:hasAttachment rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:range bim-ss:Attachment .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#hasMessage
+
+bim-ss:hasMessage rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:range bim-ss:Message .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#hasOrderItem
+
+bim-ss:hasOrderItem rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:domain bim-ss:Order ;
+                    
+                    rdfs:range bim-ss:OrderItem .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#hasProduct
+
+bim-ss:hasProduct rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:range bim-ss:Product ;
+                  
+                  rdfs:domain bim-ss:Store .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#hasPromotion
+
+bim-ss:hasPromotion rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:range bim-ss:Promotion .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#hasSender
+
+bim-ss:hasSender rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:range bim-ss:Sender .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#picture
+
+bim-ss:picture rdf:type owl:ObjectProperty ;
+               
+               rdfs:range cnt:ContentAsBase64 .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#referencesProduct
+
+bim-ss:referencesProduct rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:range bim-ss:Product .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#referencesPromotions
+
+bim-ss:referencesPromotions rdf:type owl:ObjectProperty ;
+                            
+                            rdfs:range bim-ss:Promotion .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#causedByFault
+
+bim-sy:causedByFault rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:range bim-sy:Fault .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#hasComponent
+
+bim-sy:hasComponent rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:domain bim-sy:Yacht ;
+                    
+                    rdfs:range bim-sy:YachtComponent .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#hasPoint
+
+bim-sy:hasPoint rdf:type owl:ObjectProperty ;
+                
+                rdfs:domain bim-sy:Route ;
+                
+                rdfs:range bim-sy:RoutePoint .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#hasPotentialSupplier
+
+bim-sy:hasPotentialSupplier rdf:type owl:ObjectProperty ;
+                            
+                            rdfs:range bim-sy:PotentialSupplierOrganization .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#hasServiceType
+
+bim-sy:hasServiceType rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:range bim-sy:HarbourServiceType ;
+                      
+                      rdfs:domain bim-sy:SmartYachtingService .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#hasSupportedService
+
+bim-sy:hasSupportedService rdf:type owl:ObjectProperty ;
+                           
+                           rdfs:range core:Service .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#offersService
+
+bim-sy:offersService rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:range bim-sy:HarbourServiceType .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#supportsServiceType
+
+bim-sy:supportsServiceType rdf:type owl:ObjectProperty ;
+                           
+                           rdfs:range bim-sy:HarbourServiceType ;
+                           
+                           rdfs:domain bim-sy:Yacht .
 
 
 
@@ -88,6 +253,122 @@
 ###  http://purl.oclc.org/NET/ssnx/qu/qu#symbol
 
 qu:symbol rdfs:subPropertyOf core:symbol .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#hint
+
+bim-sm:hint rdf:type owl:DatatypeProperty ;
+            
+            rdfs:range xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#content
+
+bim-ss:content rdf:type owl:DatatypeProperty .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#description
+
+bim-ss:description rdf:type owl:DatatypeProperty ;
+                   
+                   rdfs:range xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#discount
+
+bim-ss:discount rdf:type owl:DatatypeProperty ;
+                
+                rdfs:range xsd:decimal .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#end
+
+bim-ss:end rdf:type owl:DatatypeProperty ;
+           
+           rdfs:range xsd:dateTime .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#id
+
+bim-ss:id rdf:type owl:DatatypeProperty ;
+          
+          rdfs:range xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#newPrice
+
+bim-ss:newPrice rdf:type owl:DatatypeProperty ;
+                
+                rdfs:range xsd:decimal .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#picture
+
+bim-ss:picture rdf:type owl:DatatypeProperty .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#price
+
+bim-ss:price rdf:type owl:DatatypeProperty ;
+             
+             rdfs:range xsd:decimal .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#productId
+
+bim-ss:productId rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:range xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#quantity
+
+bim-ss:quantity rdf:type owl:DatatypeProperty ;
+                
+                rdfs:range xsd:integer .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#start
+
+bim-ss:start rdf:type owl:DatatypeProperty ;
+             
+             rdfs:range xsd:dateTime .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#type
+
+bim-ss:type rdf:type owl:DatatypeProperty ;
+            
+            rdfs:range xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#occurance
+
+bim-sy:occurance rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:range xsd:dateTime .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#timestamp
+
+bim-sy:timestamp rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:range xsd:dateTime .
 
 
 
@@ -115,32 +396,6 @@ qu:Unit rdfs:subClassOf core:UnitOfMeasurement .
 ###  http://purl.oclc.org/NET/ssnx/qu/quantity#ElectricConductivity
 
 qu-quantity:ElectricConductivity rdf:type owl:Class .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#AverageObservation
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#AverageObservation> rdf:type owl:Class ;
-                                                                          
-                                                                          rdfs:subClassOf <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#ObservationType> .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#CheckLevel
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#CheckLevel> rdf:type owl:Class .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#ObservationType
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#ObservationType> rdf:type owl:Class .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Validity
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Validity> rdf:type owl:Class .
 
 
 
@@ -176,45 +431,1287 @@ property:SurfaceDensityRate rdf:type owl:Class ;
 
 
 
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#InfrastructureElement
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Level
 
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#InfrastructureElement> rdf:type owl:Class ;
-                                                                            
-                                                                            rdfs:subClassOf core:SymbolicLocation .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#ParkingSpot
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#ParkingSpot> rdf:type owl:Class ;
-                                                                  
-                                                                  rdfs:subClassOf <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#InfrastructureElement> ,
-                                                                                  [ rdf:type owl:Restriction ;
-                                                                                    owl:onProperty core:locatedAt ;
-                                                                                    owl:onClass <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#RoadSegment> ;
-                                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
-                                                                                  ] .
+bim-sm:Level rdf:type owl:Class ;
+             
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty rdfs:label ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onDataRange xsd:string
+                             ] .
 
 
 
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Road
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#MovementType
 
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Road> rdf:type owl:Class ;
-                                                           
-                                                           rdfs:subClassOf <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#InfrastructureElement> .
+bim-sm:MovementType rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                      owl:onProperty rdfs:label ;
+                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                      owl:onDataRange xsd:string
+                                    ] .
 
 
 
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#RoadSegment
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#ObservationType
 
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#RoadSegment> rdf:type owl:Class ;
-                                                                  
-                                                                  rdfs:subClassOf <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#InfrastructureElement> ,
-                                                                                  [ rdf:type owl:Restriction ;
-                                                                                    owl:onProperty <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#belongsTo> ;
-                                                                                    owl:onClass <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Road> ;
-                                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
-                                                                                  ] .
+bim-sm:ObservationType rdf:type owl:Class .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#PointOfInterest
+
+bim-sm:PointOfInterest rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf core:WGS84Location ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty bim-sm:hasPoIType ;
+                                         owl:onClass bim-sm:PointOfInterestType ;
+                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                       ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#PointOfInterestType
+
+bim-sm:PointOfInterestType rdf:type owl:Class ;
+                           
+                           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                             owl:onProperty rdfs:label ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onDataRange xsd:string
+                                           ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Waypoint
+
+bim-sm:Waypoint rdf:type owl:Class ;
+                
+                rdfs:subClassOf core:WGS84Location ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty bim-sm:hint ;
+                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onDataRange xsd:string
+                                ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#BloodPressureMeter
+
+bim-sr:BloodPressureMeter rdf:type owl:Class ;
+                          
+                          rdfs:subClassOf bim-sr:HealthDevice .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#BodyScale
+
+bim-sr:BodyScale rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf bim-sr:HealthDevice .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#CloseCapability
+
+bim-sr:CloseCapability rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf core:Capability ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty core:hasEffect ;
+                                         owl:onClass bim-sr:CloseEffect ;
+                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                       ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#CloseEffect
+
+bim-sr:CloseEffect rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf core:Effect ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty core:affects ;
+                                     owl:hasValue bim-sr:openCloseState
+                                   ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#Curtain
+
+bim-sr:Curtain rdf:type owl:Class ;
+               
+               rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#DimmerCapability
+
+bim-sr:DimmerCapability rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf core:Capability ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty core:hasEffect ;
+                                          owl:onClass bim-sr:DimmerEffect ;
+                                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                        ],
+										[ rdf:type owl:Restriction ;
+                                          owl:onProperty core:hasParameter ;
+                                          owl:hasValue [ a core:Parameter ;
+											core:name "level"^^xsd:string ;
+											core:mandatory "true"^^xsd:boolean ;
+											core:hasDatatype xsd:integer 
+										  ]
+                                     ]	.
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#DimmerEffect
+
+bim-sr:DimmerEffect rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf core:Effect ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty core:affects ;
+                                      owl:hasValue qu-quantity:illuminance
+                                    ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#ElectricityMeter
+
+bim-sr:ElectricityMeter rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#EnviromentalSensor
+
+bim-sr:EnviromentalSensor rdf:type owl:Class ;
+                          
+                          rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#Fancoil
+
+bim-sr:Fancoil rdf:type owl:Class ;
+               
+               rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#GaitMeasureDevice
+
+bim-sr:GaitMeasureDevice rdf:type owl:Class ;
+                         
+                         rdfs:subClassOf bim-sr:HealthDevice .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#HealthDevice
+
+bim-sr:HealthDevice rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#HumiditySensor
+
+bim-sr:HumiditySensor rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#Light
+
+bim-sr:Light rdf:type owl:Class ;
+             
+             rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#OnOffCapabililty
+
+bim-sr:OnOffCapabililty rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf core:Capability ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty core:hasEffect ;
+                                          owl:onClass bim-sr:OnOffEffect ;
+                                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                        ] ,
+										[ rdf:type owl:Restriction ;
+                                          owl:onProperty core:hasParameter ;
+                                          owl:hasValue [ a core:Parameter ;
+											core:name "on"^^xsd:string ;
+											core:mandatory "true"^^xsd:boolean ;
+											core:hasDatatype xsd:boolean
+										  ]
+                                        ] .										
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#OnOffEffect
+
+bim-sr:OnOffEffect rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf core:Effect ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty core:affects ;
+                                     owl:hasValue bim-sr:onOffState
+                                   ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#OpenCapability
+
+bim-sr:OpenCapability rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf core:Capability ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty core:hasEffect ;
+                                        owl:onClass bim-sr:OpenEffect ;
+                                        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                      ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#OpenEffect
+
+bim-sr:OpenEffect rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf core:Effect ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty core:affects ;
+                                    owl:hasValue bim-sr:openCloseState
+                                  ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#Person
+
+bim-sr:Person rdf:type owl:Class .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#PowerMeter
+
+bim-sr:PowerMeter rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#RGBCapability
+
+bim-sr:RGBCapability rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf core:Capability ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty core:hasEffect ;
+                                       owl:onClass bim-sr:RGBEffect ;
+                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                     ] ,
+									 [ rdf:type owl:Restriction ;
+                                          owl:onProperty core:hasParameter ;
+                                          owl:hasValue [ a core:Parameter ;
+											core:name "r"^^xsd:string ;
+											core:mandatory "true"^^xsd:boolean ;
+											core:hasDatatype xsd:integer ;
+											core:hasRestriction bim-sr:BitValueRestriction
+										  ]
+                                     ] ,
+									 [ rdf:type owl:Restriction ;
+                                          owl:onProperty core:hasParameter ;
+                                          owl:hasValue [ a core:Parameter ;
+											core:name "g"^^xsd:string ;
+											core:mandatory "true"^^xsd:boolean ;
+											core:hasDatatype xsd:integer ;
+											core:hasRestriction bim-sr:BitValueRestriction
+										  ]
+                                     ] ,
+									 [ rdf:type owl:Restriction ;
+                                          owl:onProperty core:hasParameter ;
+                                          owl:hasValue [ a core:Parameter ;
+											core:name "b"^^xsd:string ;
+											core:mandatory "true"^^xsd:boolean ;
+											core:hasDatatype xsd:integer ;
+											core:hasRestriction bim-sr:BitValueRestriction
+										  ]
+                                     ] . 
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#RGBEffect
+
+bim-sr:RGBEffect rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf core:Effect ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty core:affects ;
+                                   owl:hasValue bim-sr:color
+                                 ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#Room
+
+bim-sr:Room rdf:type owl:Class .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#SetPositionCapability
+
+bim-sr:SetPositionCapability rdf:type owl:Class ;
+                             
+                             rdfs:subClassOf core:Capability ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty core:hasEffect ;
+                                               owl:onClass bim-sr:SetPositionEffect ;
+                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                             ],[ rdf:type owl:Restriction ;
+                                          owl:onProperty core:hasParameter ;
+                                          owl:hasValue [ a core:Parameter ;
+											core:name "position"^^xsd:string ;
+											core:mandatory "true"^^xsd:boolean ;
+											core:hasDatatype xsd:integer 
+										  ]
+                                     ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#SetPositionEffect
+
+bim-sr:SetPositionEffect rdf:type owl:Class ;
+                         
+                         rdfs:subClassOf core:Effect ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty core:affects ;
+                                           owl:hasValue bim-sr:position
+                                         ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#SetTemperatureCapability
+
+bim-sr:SetTemperatureCapability rdf:type owl:Class ;
+                                
+                                rdfs:subClassOf core:Capability ,
+                                                [ rdf:type owl:Restriction ;
+                                                  owl:onProperty core:hasEffect ;
+                                                  owl:onClass bim-sr:SetTemperatureEffect ;
+                                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                                ] ,
+												[ rdf:type owl:Restriction ;
+                                          owl:onProperty core:hasParameter ;
+                                          owl:hasValue [ a core:Parameter ;
+											core:name "temperature"^^xsd:string ;
+											core:mandatory "true"^^xsd:boolean ;
+											core:hasDatatype xsd:double 
+										  ]
+                                                ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#SetTemperatureEffect
+
+bim-sr:SetTemperatureEffect rdf:type owl:Class ;
+                            
+                            rdfs:subClassOf core:Effect ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty core:affects ;
+                                              owl:hasValue qu-quantity:temperature
+                                            ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#StopCapability
+
+bim-sr:StopCapability rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf core:Capability ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty core:hasEffect ;
+                                        owl:onClass bim-sr:StopEffect ;
+                                        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                      ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#StopEffect
+
+bim-sr:StopEffect rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf core:Effect ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty core:affects ;
+                                    owl:hasValue bim-sr:activityState
+                                  ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#TemperatureSensor
+
+bim-sr:TemperatureSensor rdf:type owl:Class ;
+                         
+                         rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#VoltageMeter
+
+bim-sr:VoltageMeter rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#Window
+
+bim-sr:Window rdf:type owl:Class ;
+              
+              rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Attachment
+
+bim-ss:Attachment rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty core:name ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:string
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty bim-ss:content ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange cnt:ContentAsBase64
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty bim-ss:type ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:string
+                                  ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Catalog
+
+bim-ss:Catalog rdf:type owl:Class .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#FoodStore
+
+bim-ss:FoodStore rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf bim-ss:Store .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#GetCatalogService
+
+bim-ss:GetCatalogService rdf:type owl:Class ;
+                         
+                         rdfs:subClassOf bim-ss:PromowallService ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty core:hasResultType ;
+                                           owl:hasValue [ rdf:type core:ComplexDatatype ;
+                                                          core:basedOnClass bim-ss:Catalog ;
+                                                          core:hasProperty [ rdf:type core:ComplexProperty ;
+                                                                             core:basedOnProperty bim-ss:hasMessage ;
+                                                                             core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                core:basedOnClass bim-ss:Message ;
+                                                                                                core:hasProperty [ rdf:type core:ComplexProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:hasSender ;
+                                                                                                                   core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                                                      core:basedOnClass bim-ss:Sender ;
+                                                                                                                                      core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                                         core:basedOnProperty core:name ;
+                                                                                                                                                         core:hasDatatype xsd:string
+                                                                                                                                                       ]
+                                                                                                                                    ]
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:ComplexProperty ;
+                                                                                                                   core:isArray "true"^^xsd:boolean ;
+                                                                                                                   core:basedOnProperty bim-ss:hasAttachment ;
+                                                                                                                   core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                                                      core:basedOnClass bim-ss:Attachment ;
+                                                                                                                                      core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                                         core:basedOnProperty bim-ss:type ;
+                                                                                                                                                         core:hasDatatype xsd:string
+                                                                                                                                                       ] ,
+                                                                                                                                                       [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                                         core:basedOnProperty core:name ;
+                                                                                                                                                         core:hasDatatype xsd:string
+                                                                                                                                                       ] ,
+                                                                                                                                                       [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                                         core:basedOnProperty bim-ss:content ;
+                                                                                                                                                         core:hasDatatype cnt:ContentAsBase64
+                                                                                                                                                       ]
+                                                                                                                                    ]
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-sm:timestamp ;
+                                                                                                                   core:hasDatatype xsd:dateTime
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:content ;
+                                                                                                                   core:hasDatatype xsd:string
+                                                                                                                 ]
+                                                                                              ]
+                                                                           ] ,
+                                                                           [ rdf:type core:ComplexProperty ;
+                                                                             core:basedOnProperty bim-ss:hasPromotion ;
+                                                                             core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                core:isArray "true"^^xsd:boolean ;
+                                                                                                core:basedOnClass bim-ss:Promotion ;
+                                                                                                core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:discount ;
+                                                                                                                   core:hasDatatype xsd:decimal
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:ComplexProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:referencesProduct ;
+                                                                                                                   core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                                                      core:basedOnClass bim-ss:Product ;
+                                                                                                                                      core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                                         core:basedOnProperty bim-ss:picture ;
+                                                                                                                                                         core:hasDatatype cnt:ContentAsBase64
+                                                                                                                                                       ] ,
+                                                                                                                                                       [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                                         core:basedOnProperty bim-ss:price ;
+                                                                                                                                                         core:hasDatatype xsd:decimal
+                                                                                                                                                       ] ,
+                                                                                                                                                       [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                                         core:basedOnProperty bim-ss:id ;
+                                                                                                                                                         core:hasDatatype xsd:string
+                                                                                                                                                       ] ,
+                                                                                                                                                       [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                                         core:basedOnProperty core:name ;
+                                                                                                                                                         core:hasDatatype xsd:string
+                                                                                                                                                       ]
+                                                                                                                                    ]
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:description ;
+                                                                                                                   core:hasDatatype xsd:string
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:id ;
+                                                                                                                   core:hasDatatype xsd:string
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:end ;
+                                                                                                                   core:hasDatatype xsd:dateTime
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:newPrice ;
+                                                                                                                   core:hasDatatype xsd:decimal
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:start ;
+                                                                                                                   core:hasDatatype xsd:dateTime
+                                                                                                                 ]
+                                                                                              ]
+                                                                           ]
+                                                        ]
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty core:hasResultType ;
+                                           owl:hasValue xsd:string
+                                         ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#GetInformationService
+
+bim-ss:GetInformationService rdf:type owl:Class ;
+                             
+                             rdfs:subClassOf bim-ss:RetailerService ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty core:hasResultType ;
+                                               owl:hasValue [ rdf:type core:ComplexDatatype ;
+                                                              core:basedOnClass bim-ss:Store ;
+                                                              core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                 core:basedOnProperty core:name ;
+                                                                                 core:hasDatatype xsd:string
+                                                                               ] ,
+                                                                               [ rdf:type core:PrimitiveProperty ;
+                                                                                 core:basedOnProperty bim-ss:picture ;
+                                                                                 core:hasDatatype cnt:ContentAsBase64
+                                                                               ] ,
+                                                                               [ rdf:type core:ComplexProperty ;
+                                                                                 core:isArray "true"^^xsd:boolean ;
+                                                                                 core:basedOnProperty bim-ss:hasProduct ;
+                                                                                 core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                    core:basedOnClass bim-ss:Product ;
+                                                                                                    core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                       core:basedOnProperty bim-ss:id ;
+                                                                                                                       core:hasDatatype xsd:string
+                                                                                                                     ] ,
+                                                                                                                     [ rdf:type core:PrimitiveProperty ;
+                                                                                                                       core:basedOnProperty core:name ;
+                                                                                                                       core:hasDatatype xsd:string
+                                                                                                                     ] ,
+                                                                                                                     [ rdf:type core:PrimitiveProperty ;
+                                                                                                                       core:basedOnProperty bim-ss:picture ;
+                                                                                                                       core:hasDatatype cnt:ContentAsBase64
+                                                                                                                     ] ,
+                                                                                                                     [ rdf:type core:PrimitiveProperty ;
+                                                                                                                       core:basedOnProperty bim-ss:price ;
+                                                                                                                       core:hasDatatype xsd:decimal
+                                                                                                                     ]
+                                                                                                  ]
+                                                                               ] ,
+                                                                               [ rdf:type core:PrimitiveProperty ;
+                                                                                 core:basedOnProperty bim-ss:id ;
+                                                                                 core:hasDatatype xsd:string
+                                                                               ]
+                                                            ]
+                                             ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#GoodStore
+
+bim-ss:GoodStore rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf bim-ss:Store .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Message
+
+bim-ss:Message rdf:type owl:Class ;
+               
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty bim-ss:hasSender ;
+                                 owl:onClass bim-ss:Sender ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty bim-sy:timestamp ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:dateTime
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty bim-ss:content ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:string
+                               ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#NotificationService
+
+bim-ss:NotificationService rdf:type owl:Class ;
+                           
+                           rdfs:subClassOf bim-ss:VisitorService ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty core:hasResultType ;
+                                             owl:hasValue xsd:string
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty core:hasParameter ;
+                                             owl:hasValue [ rdf:type core:Parameter ;
+                                                            core:name "message"^^xsd:string ;
+                                                            core:mandatory "true"^^xsd:boolean ;
+                                                            core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                               core:basedOnClass bim-ss:Message ;
+                                                                               core:hasProperty [ rdf:type core:ComplexProperty ;
+                                                                                                  core:basedOnProperty bim-ss:hasSender ;
+                                                                                                  core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                                     core:basedOnClass bim-ss:Sender ;
+                                                                                                                     core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                        core:basedOnProperty core:name ;
+                                                                                                                                        core:hasDatatype xsd:string
+                                                                                                                                      ]
+                                                                                                                   ]
+                                                                                                ] ,
+                                                                                                [ rdf:type core:PrimitiveProperty ;
+                                                                                                  core:basedOnProperty bim-ss:content ;
+                                                                                                  core:hasDatatype xsd:string
+                                                                                                ] ,
+                                                                                                [ rdf:type core:PrimitiveProperty ;
+                                                                                                  core:basedOnProperty bim-sm:timestamp ;
+                                                                                                  core:hasDatatype xsd:dateTime
+                                                                                                ] ,
+                                                                                                [ rdf:type core:ComplexProperty ;
+                                                                                                  core:isArray "true"^^xsd:boolean ;
+                                                                                                  core:basedOnProperty bim-ss:hasAttachment ;
+                                                                                                  core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                                     core:basedOnClass bim-ss:Attachment ;
+                                                                                                                     core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                        core:basedOnProperty core:name ;
+                                                                                                                                        core:hasDatatype xsd:string
+                                                                                                                                      ] ,
+                                                                                                                                      [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                        core:basedOnProperty bim-ss:type ;
+                                                                                                                                        core:hasDatatype xsd:string
+                                                                                                                                      ] ,
+                                                                                                                                      [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                        core:basedOnProperty bim-ss:content ;
+                                                                                                                                        core:hasDatatype cnt:ContentAsBase64
+                                                                                                                                      ]
+                                                                                                                   ]
+                                                                                                ]
+                                                                             ]
+                                                          ]
+                                           ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Order
+
+bim-ss:Order rdf:type owl:Class ;
+             
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty bim-ss:hasOrderItem ;
+                               owl:onClass bim-ss:OrderItem ;
+                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                             ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#OrderItem
+
+bim-ss:OrderItem rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty bim-ss:productId ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:string
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty bim-ss:quantity ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:integer
+                                 ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#PlaceOrderService
+
+bim-ss:PlaceOrderService rdf:type owl:Class ;
+                         
+                         rdfs:subClassOf bim-ss:RetailerService ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty core:hasParameter ;
+                                           owl:hasValue [ rdf:type core:Parameter ;
+                                                          core:name "order"^^xsd:string ;
+                                                          core:mandatory "true"^^xsd:boolean ;
+                                                          core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                             core:basedOnClass bim-ss:Order ;
+                                                                             core:hasProperty [ rdf:type core:ComplexProperty ;
+                                                                                                core:basedOnProperty bim-ss:hasOrderItem ;
+                                                                                                core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                                   core:basedOnClass bim-ss:OrderItem ;
+                                                                                                                   core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                      core:basedOnProperty bim-ss:quantity ;
+                                                                                                                                      core:hasDatatype xsd:integer
+                                                                                                                                    ] ,
+                                                                                                                                    [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                      core:basedOnProperty bim-ss:productId ;
+                                                                                                                                      core:hasDatatype xsd:string
+                                                                                                                                    ]
+                                                                                                                 ]
+                                                                                              ]
+                                                                           ]
+                                                        ]
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty core:hasResultType ;
+                                           owl:hasValue xsd:string
+                                         ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Product
+
+bim-ss:Product rdf:type owl:Class ;
+               
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty bim-ss:price ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:decimal
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty bim-ss:picture ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange cnt:ContentAsBase64
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty core:name ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:string
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty bim-ss:id ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:string
+                               ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Promotion
+
+bim-ss:Promotion rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty bim-ss:newPrice ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:decimal
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty bim-ss:start ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:dateTime
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty bim-ss:discount ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:decimal
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty bim-ss:id ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:string
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty qu:description ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:string
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty bim-ss:end ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:dateTime
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty bim-ss:referencesProduct ;
+                                   owl:onClass bim-ss:Product ;
+                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                 ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#PromowallDevice
+
+bim-ss:PromowallDevice rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#PromowallService
+
+bim-ss:PromowallService rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf core:Service .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#PublishInformationService
+
+bim-ss:PublishInformationService rdf:type owl:Class ;
+                                 
+                                 rdfs:subClassOf bim-ss:PromowallService ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty core:hasParameter ;
+                                                   owl:hasValue [ rdf:type core:Parameter ;
+                                                                  core:name "message"^^xsd:string ;
+                                                                  core:mandatory "true"^^xsd:boolean ;
+                                                                  core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                     core:basedOnClass bim-ss:Message ;
+                                                                                     core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                        core:basedOnProperty bim-ss:content ;
+                                                                                                        core:hasDatatype xsd:string
+                                                                                                      ] ,
+                                                                                                      [ rdf:type core:ComplexProperty ;
+                                                                                                        core:basedOnProperty bim-ss:hasSender ;
+                                                                                                        core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                                           core:basedOnClass bim-ss:Sender ;
+                                                                                                                           core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                              core:basedOnProperty core:name ;
+                                                                                                                                              core:hasDatatype xsd:string
+                                                                                                                                            ]
+                                                                                                                         ]
+                                                                                                      ] ,
+                                                                                                      [ rdf:type core:PrimitiveProperty ;
+                                                                                                        core:basedOnProperty bim-sm:timestamp ;
+                                                                                                        core:hasDatatype xsd:dateTime
+                                                                                                      ] ,
+                                                                                                      [ rdf:type core:ComplexProperty ;
+                                                                                                        core:isArray "true"^^xsd:boolean ;
+                                                                                                        core:basedOnProperty bim-ss:hasAttachment ;
+                                                                                                        core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                                           core:basedOnClass bim-ss:Attachment ;
+                                                                                                                           core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                              core:basedOnProperty bim-ss:content ;
+                                                                                                                                              core:hasDatatype cnt:ContentAsBase64
+                                                                                                                                            ] ,
+                                                                                                                                            [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                              core:basedOnProperty core:name ;
+                                                                                                                                              core:hasDatatype xsd:string
+                                                                                                                                            ] ,
+                                                                                                                                            [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                              core:basedOnProperty bim-ss:type ;
+                                                                                                                                              core:hasDatatype xsd:string
+                                                                                                                                            ]
+                                                                                                                         ]
+                                                                                                      ]
+                                                                                   ]
+                                                                ]
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty core:hasResultType ;
+                                                   owl:hasValue xsd:string
+                                                 ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#PublishPromotionService
+
+bim-ss:PublishPromotionService rdf:type owl:Class ;
+                               
+                               rdfs:subClassOf bim-ss:PromowallService ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty core:hasParameter ;
+                                                 owl:hasValue [ rdf:type core:Parameter ;
+                                                                core:name "promotion"^^xsd:string ;
+                                                                core:mandatory "true"^^xsd:boolean ;
+                                                                core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                   core:basedOnClass bim-ss:Promotion ;
+                                                                                   core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                      core:basedOnProperty bim-ss:newPrice ;
+                                                                                                      core:hasDatatype xsd:decimal
+                                                                                                    ] ,
+                                                                                                    [ rdf:type core:PrimitiveProperty ;
+                                                                                                      core:basedOnProperty bim-ss:start ;
+                                                                                                      core:hasDatatype xsd:dateTime
+                                                                                                    ] ,
+                                                                                                    [ rdf:type core:PrimitiveProperty ;
+                                                                                                      core:basedOnProperty bim-ss:discount ;
+                                                                                                      core:hasDatatype xsd:decimal
+                                                                                                    ] ,
+                                                                                                    [ rdf:type core:PrimitiveProperty ;
+                                                                                                      core:basedOnProperty bim-ss:description ;
+                                                                                                      core:hasDatatype xsd:string
+                                                                                                    ] ,
+                                                                                                    [ rdf:type core:PrimitiveProperty ;
+                                                                                                      core:basedOnProperty bim-ss:id ;
+                                                                                                      core:hasDatatype xsd:string
+                                                                                                    ] ,
+                                                                                                    [ rdf:type core:PrimitiveProperty ;
+                                                                                                      core:basedOnProperty bim-ss:end ;
+                                                                                                      core:hasDatatype xsd:dateTime
+                                                                                                    ] ,
+                                                                                                    [ rdf:type core:ComplexProperty ;
+                                                                                                      core:basedOnProperty bim-ss:referencesProduct ;
+                                                                                                      core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                                         core:basedOnClass bim-ss:Product ;
+                                                                                                                         core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                            core:basedOnProperty core:name ;
+                                                                                                                                            core:hasDatatype xsd:string
+                                                                                                                                          ] ,
+                                                                                                                                          [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                            core:basedOnProperty bim-ss:picture ;
+                                                                                                                                            core:hasDatatype cnt:ContentAsBase64
+                                                                                                                                          ] ,
+                                                                                                                                          [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                            core:basedOnProperty bim-ss:price ;
+                                                                                                                                            core:hasDatatype xsd:decimal
+                                                                                                                                          ] ,
+                                                                                                                                          [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                            core:basedOnProperty bim-ss:id ;
+                                                                                                                                            core:hasDatatype xsd:string
+                                                                                                                                          ]
+                                                                                                                       ]
+                                                                                                    ]
+                                                                                 ]
+                                                              ]
+                                               ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#RetailerDevice
+
+bim-ss:RetailerDevice rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#RetailerService
+
+bim-ss:RetailerService rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf core:Service .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Sender
+
+bim-ss:Sender rdf:type owl:Class ;
+              
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty core:name ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange xsd:string
+                              ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Store
+
+bim-ss:Store rdf:type owl:Class ;
+             
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty bim-ss:id ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onDataRange xsd:string
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bim-ss:picture ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onDataRange cnt:ContentAsBase64
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty core:name ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onDataRange xsd:string
+                             ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#VisitorDevice
+
+bim-ss:VisitorDevice rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf core:Device .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#VisitorService
+
+bim-ss:VisitorService rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf core:Service .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#BlackWaterTank
+
+bim-sy:BlackWaterTank rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf bim-sy:Tank .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#ConsumableNeed
+
+bim-sy:ConsumableNeed rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                        owl:onProperty qu:description ;
+                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onDataRange xsd:string
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty bim-sy:hasPotentialSupplier ;
+                                        owl:onClass bim-sy:PotentialSupplierOrganization ;
+                                        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                      ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#Exhaust
+
+bim-sy:Exhaust rdf:type owl:Class ;
+               
+               rdfs:subClassOf bim-sy:YachtComponent .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#Fault
+
+bim-sy:Fault rdf:type owl:Class .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#FreshWaterTank
+
+bim-sy:FreshWaterTank rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf bim-sy:Tank .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#GreyWaterTank
+
+bim-sy:GreyWaterTank rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf bim-sy:Tank .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#HarbourServiceType
+
+bim-sy:HarbourServiceType rdf:type owl:Class .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#MaintenanceNeed
+
+bim-sy:MaintenanceNeed rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                         owl:onProperty qu:description ;
+                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                         owl:onDataRange xsd:string
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty bim-sy:causedByFault ;
+                                         owl:onClass bim-sy:Fault ;
+                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty bim-sy:occurance ;
+                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                         owl:onDataRange xsd:dateTime
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty bim-sy:hasPotentialSupplier ;
+                                         owl:onClass bim-sy:PotentialSupplierOrganization ;
+                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                       ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#Port
+
+bim-sy:Port rdf:type owl:Class ;
+            
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty bim-sy:offersService ;
+                              owl:onClass bim-sy:HarbourServiceType ;
+                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                            ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#PortExhaust
+
+bim-sy:PortExhaust rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf bim-sy:Exhaust .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#PotentialSupplierOrganization
+
+bim-sy:PotentialSupplierOrganization rdf:type owl:Class .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#Route
+
+bim-sy:Route rdf:type owl:Class ;
+             
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty bim-sy:hasPoint ;
+                               owl:onClass bim-sy:RoutePoint ;
+                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                             ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#RoutePoint
+
+bim-sy:RoutePoint rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf bim-sm:Waypoint ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty bim-sy:timestamp ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:dateTime
+                                  ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#ServiceFielOilTank
+
+bim-sy:ServiceFielOilTank rdf:type owl:Class ;
+                          
+                          rdfs:subClassOf bim-sy:Tank .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#SmartYachtingService
+
+bim-sy:SmartYachtingService rdf:type owl:Class ;
+                            
+                            rdfs:subClassOf core:Service ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty bim-sy:hasServiceType ;
+                                              owl:onClass bim-sy:HarbourServiceType ;
+                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                            ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#StarboardExhaust
+
+bim-sy:StarboardExhaust rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf bim-sy:Exhaust .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#StorageFuelOilTank
+
+bim-sy:StorageFuelOilTank rdf:type owl:Class ;
+                          
+                          rdfs:subClassOf bim-sy:Tank .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#Tank
+
+bim-sy:Tank rdf:type owl:Class ;
+            
+            rdfs:subClassOf bim-sy:YachtComponent .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#Yacht
+
+bim-sy:Yacht rdf:type owl:Class ;
+             
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty bim-sy:hasComponent ;
+                               owl:onClass bim-sy:YachtComponent ;
+                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bim-sy:supportsServiceType ;
+                               owl:onClass bim-sy:HarbourServiceType ;
+                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                             ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#YachtComponent
+
+bim-sy:YachtComponent rdf:type owl:Class .
 
 
 
@@ -231,27 +1728,10 @@ unit:SurfaceDensityRateUnit rdf:type owl:Class ;
 core:Observation rdf:type owl:Class ;
                  
                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                   owl:onProperty <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#observationType> ;
-                                   owl:onClass <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#ObservationType> ;
+                                   owl:onProperty bim-sm:hasObservationType ;
+                                   owl:onClass bim-sm:ObservationType ;
                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
                                  ] .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/core#ObservationValue
-
-core:ObservationValue rdf:type owl:Class ;
-                      
-                      rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                        owl:onProperty <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#observationType> ;
-                                        owl:onClass <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#CheckLevel> ;
-                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#observationType> ;
-                                        owl:onClass <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Validity> ;
-                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
-                                      ] .
 
 
 
@@ -282,6 +1762,114 @@ qu-dim:trafficScheme rdf:type owl:NamedIndividual .
 
 
 
+###  http://schema.org/AutoRepair
+
+<http://schema.org/AutoRepair> rdf:type bim-sy:PotentialSupplierOrganization ,
+                                        owl:NamedIndividual ;
+                               
+                               rdfs:label "AutoRepair"^^xsd:string .
+
+
+
+###  http://schema.org/ComputerStore
+
+<http://schema.org/ComputerStore> rdf:type bim-sy:PotentialSupplierOrganization ,
+                                           owl:NamedIndividual ;
+                                  
+                                  rdfs:label "ComputerStore"^^xsd:string .
+
+
+
+###  http://schema.org/DepartmentStore
+
+<http://schema.org/DepartmentStore> rdf:type bim-sy:PotentialSupplierOrganization ,
+                                             owl:NamedIndividual ;
+                                    
+                                    rdfs:label "DepartmentStore"^^xsd:string .
+
+
+
+###  http://schema.org/DryCleaningOrLaundry
+
+<http://schema.org/DryCleaningOrLaundry> rdf:type bim-sy:PotentialSupplierOrganization ,
+                                                  owl:NamedIndividual ;
+                                         
+                                         rdfs:label "DryCleaningOrLaundry"^^xsd:string .
+
+
+
+###  http://schema.org/Electrician
+
+<http://schema.org/Electrician> rdf:type bim-sy:PotentialSupplierOrganization ,
+                                         owl:NamedIndividual ;
+                                
+                                rdfs:label "Electrician"^^xsd:string .
+
+
+
+###  http://schema.org/ElectronicsStore
+
+<http://schema.org/ElectronicsStore> rdf:type bim-sy:PotentialSupplierOrganization ,
+                                              owl:NamedIndividual ;
+                                     
+                                     rdfs:label "ElectronicsStore"^^xsd:string .
+
+
+
+###  http://schema.org/GasStation
+
+<http://schema.org/GasStation> rdf:type bim-sy:PotentialSupplierOrganization ,
+                                        owl:NamedIndividual ;
+                               
+                               rdfs:label "ComputerStoreGasStation"^^xsd:string .
+
+
+
+###  http://schema.org/GroceryStore
+
+<http://schema.org/GroceryStore> rdf:type bim-sy:PotentialSupplierOrganization ,
+                                          owl:NamedIndividual ;
+                                 
+                                 rdfs:label "GroceryStore"^^xsd:string .
+
+
+
+###  http://schema.org/HVACBusiness
+
+<http://schema.org/HVACBusiness> rdf:type bim-sy:PotentialSupplierOrganization ,
+                                          owl:NamedIndividual ;
+                                 
+                                 rdfs:label "HVACBusiness"^^xsd:string .
+
+
+
+###  http://schema.org/HardwareStore
+
+<http://schema.org/HardwareStore> rdf:type bim-sy:PotentialSupplierOrganization ,
+                                           owl:NamedIndividual ;
+                                  
+                                  rdfs:label "HardwareStore"^^xsd:string .
+
+
+
+###  http://schema.org/Plumber
+
+<http://schema.org/Plumber> rdf:type bim-sy:PotentialSupplierOrganization ,
+                                     owl:NamedIndividual ;
+                            
+                            rdfs:label "Plumber"^^xsd:string .
+
+
+
+###  http://schema.org/Winery
+
+<http://schema.org/Winery> rdf:type bim-sy:PotentialSupplierOrganization ,
+                                    owl:NamedIndividual ;
+                           
+                           rdfs:label "Winery"^^xsd:string .
+
+
+
 ###  http://www.symbiote-h2020.eu/ontology/bim-0.1/property#airQualityScheme
 
 <http://www.symbiote-h2020.eu/ontology/bim-0.1/property#airQualityScheme> rdf:type owl:NamedIndividual .
@@ -291,125 +1879,6 @@ qu-dim:trafficScheme rdf:type owl:NamedIndividual .
 ###  http://www.symbiote-h2020.eu/ontology/bim-0.1/property#healthScheme
 
 <http://www.symbiote-h2020.eu/ontology/bim-0.1/property#healthScheme> rdf:type owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#dailyAverage
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#dailyAverage> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#AverageObservation> ,
-                                                                             owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#dataCapture
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#dataCapture> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#ObservationType> ,
-                                                                            owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#forthnightlyAverage
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#forthnightlyAverage> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#AverageObservation> ,
-                                                                                    owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#hourlyAverage
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#hourlyAverage> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#AverageObservation> ,
-                                                                              owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#monthlyAverage
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#monthlyAverage> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#AverageObservation> ,
-                                                                               owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#notValid
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#notValid> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Validity> ,
-                                                                         owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#notValidDueToStationMaintenanceOrCalibration
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#notValidDueToStationMaintenanceOrCalibration> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Validity> ,
-                                                                                                             owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#notVerified
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#notVerified> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#CheckLevel> ,
-                                                                            owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#preliminaryVerified
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#preliminaryVerified> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#CheckLevel> ,
-                                                                                    owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#quarterlyAverage
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#quarterlyAverage> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#AverageObservation> ,
-                                                                                 owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#valid
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#valid> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Validity> ,
-                                                                      owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#validButBelowDetectionLimitAndNumberReplacedBy0.5*DetectionLimit
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#validButBelowDetectionLimitAndNumberReplacedBy0.5*DetectionLimit> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Validity> ,
-                                                                                                                                 owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#validButBelowDetectionLimitMeasurementValueGiven
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#validButBelowDetectionLimitMeasurementValueGiven> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#Validity> ,
-                                                                                                                 owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#variableAverage
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#variableAverage> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#AverageObservation> ,
-                                                                                owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#verified
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#verified> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#CheckLevel> ,
-                                                                         owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#weeklyAverage
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#weeklyAverage> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#AverageObservation> ,
-                                                                              owl:NamedIndividual .
-
-
-
-###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#yearlyAverage
-
-<http://www.symbiote-h2020.eu/ontology/bim/smartmobility#yearlyAverage> rdf:type <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#AverageObservation> ,
-                                                                              owl:NamedIndividual .
 
 
 
@@ -9242,6 +10711,795 @@ property:zinc_precip_Concentration rdf:type qu-dim:Concentration ,
 
 
 
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#artsCenter
+
+bim-sm:artsCenter rdf:type bim-sm:PointOfInterestType ,
+                           owl:NamedIndividual ;
+                  
+                  rdfs:label "artsCenter"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#bar
+
+bim-sm:bar rdf:type bim-sm:PointOfInterestType ,
+                    owl:NamedIndividual ;
+           
+           rdfs:label "bar"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#bicycle
+
+bim-sm:bicycle rdf:type bim-sm:MovementType ,
+                        owl:NamedIndividual ;
+               
+               rdfs:label "bicycle"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#cafe
+
+bim-sm:cafe rdf:type bim-sm:PointOfInterestType ,
+                     owl:NamedIndividual ;
+            
+            rdfs:label "cafe"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#car
+
+bim-sm:car rdf:type bim-sm:MovementType ,
+                    owl:NamedIndividual ;
+           
+           rdfs:label "car"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#casino
+
+bim-sm:casino rdf:type bim-sm:PointOfInterestType ,
+                       owl:NamedIndividual ;
+              
+              rdfs:label "casino"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#cinema
+
+bim-sm:cinema rdf:type bim-sm:PointOfInterestType ,
+                       owl:NamedIndividual ;
+              
+              rdfs:label "cinema"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#dailyAverage
+
+bim-sm:dailyAverage rdf:type bim-sm:ObservationType ,
+                             owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#fastFoodRestaurant
+
+bim-sm:fastFoodRestaurant rdf:type bim-sm:PointOfInterestType ,
+                                   owl:NamedIndividual ;
+                          
+                          rdfs:label "fastFoodRestaurant"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#foodCourt
+
+bim-sm:foodCourt rdf:type bim-sm:PointOfInterestType ,
+                          owl:NamedIndividual ;
+                 
+                 rdfs:label "foodCourt"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#forthnightlyAverage
+
+bim-sm:forthnightlyAverage rdf:type bim-sm:ObservationType ,
+                                    owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#high
+
+bim-sm:high rdf:type bim-sm:Level ,
+                     owl:NamedIndividual ;
+            
+            rdfs:label "high"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#hint
+
+bim-sm:hint rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#hourlyAverage
+
+bim-sm:hourlyAverage rdf:type bim-sm:ObservationType ,
+                              owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#jogging
+
+bim-sm:jogging rdf:type bim-sm:MovementType ,
+                        owl:NamedIndividual ;
+               
+               rdfs:label "jogging"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#library
+
+bim-sm:library rdf:type bim-sm:PointOfInterestType ,
+                        owl:NamedIndividual ;
+               
+               rdfs:label "library"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#low
+
+bim-sm:low rdf:type bim-sm:Level ,
+                    owl:NamedIndividual ;
+           
+           rdfs:label "low"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#marketplace
+
+bim-sm:marketplace rdf:type bim-sm:PointOfInterestType ,
+                            owl:NamedIndividual ;
+                   
+                   rdfs:label "marketplace"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#medium
+
+bim-sm:medium rdf:type bim-sm:Level ,
+                       owl:NamedIndividual ;
+              
+              rdfs:label "medium"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#monthlyAverage
+
+bim-sm:monthlyAverage rdf:type bim-sm:ObservationType ,
+                               owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#nightclub
+
+bim-sm:nightclub rdf:type bim-sm:PointOfInterestType ,
+                          owl:NamedIndividual ;
+                 
+                 rdfs:label "nightclub"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#none
+
+bim-sm:none rdf:type bim-sm:Level ,
+                     owl:NamedIndividual ;
+            
+            rdfs:label "none"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#placeOfWorship
+
+bim-sm:placeOfWorship rdf:type bim-sm:PointOfInterestType ,
+                               owl:NamedIndividual ;
+                      
+                      rdfs:label "placeOfWorship"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#pub
+
+bim-sm:pub rdf:type bim-sm:PointOfInterestType ,
+                    owl:NamedIndividual ;
+           
+           rdfs:label "pub"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#quarterlyAverage
+
+bim-sm:quarterlyAverage rdf:type bim-sm:ObservationType ,
+                                 owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#restaurant
+
+bim-sm:restaurant rdf:type bim-sm:PointOfInterestType ,
+                           owl:NamedIndividual ;
+                  
+                  rdfs:label "restaurant"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#timestamp
+
+bim-sm:timestamp rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#truck
+
+bim-sm:truck rdf:type bim-sm:MovementType ,
+                      owl:NamedIndividual ;
+             
+             rdfs:label "truck"^^xsd:string .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#variableAverage
+
+bim-sm:variableAverage rdf:type bim-sm:ObservationType ,
+                                owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#weeklyAverage
+
+bim-sm:weeklyAverage rdf:type bim-sm:ObservationType ,
+                              owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartmobility#yearlyAverage
+
+bim-sm:yearlyAverage rdf:type bim-sm:ObservationType ,
+                              owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#BitValueRestriction
+
+bim-sr:BitValueRestriction rdf:type core:RangeRestriction ,
+                                    owl:NamedIndividual ;
+                           
+                           core:min "0.0"^^xsd:double ;
+                           
+                           core:max "255.0"^^xsd:double .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#activityState
+
+bim-sr:activityState rdf:type core:Property ,
+                              owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#cadence
+
+bim-sr:cadence rdf:type core:Property ,
+                        owl:NamedIndividual ;
+               
+               rdfs:label "cadence" ;
+               
+               skos:inScheme <http://www.symbiote-h2020.eu/ontology/bim-0.1/property#healthScheme> .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#color
+
+bim-sr:color rdf:type core:Property ,
+                      owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#diastolicBloodPressure
+
+bim-sr:diastolicBloodPressure rdf:type core:Property ,
+                                       owl:NamedIndividual ;
+                              
+                              rdfs:label "diastolic blood pressure" ;
+                              
+                              skos:inScheme <http://www.symbiote-h2020.eu/ontology/bim-0.1/property#healthScheme> .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#heartRate
+
+bim-sr:heartRate rdf:type core:Property ,
+                          owl:NamedIndividual ;
+                 
+                 rdfs:label "heart rate" ;
+                 
+                 skos:inScheme <http://www.symbiote-h2020.eu/ontology/bim-0.1/property#healthScheme> .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#onOffState
+
+bim-sr:onOffState rdf:type core:Property ,
+                           owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#openCloseState
+
+bim-sr:openCloseState rdf:type core:Property ,
+                               owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#position
+
+bim-sr:position rdf:type core:Property ,
+                         owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#stepLength
+
+bim-sr:stepLength rdf:type core:Property ,
+                           owl:NamedIndividual ;
+                  
+                  rdfs:label "step length" ;
+                  
+                  skos:inScheme <http://www.symbiote-h2020.eu/ontology/bim-0.1/property#healthScheme> .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#strideLength
+
+bim-sr:strideLength rdf:type core:Property ,
+                             owl:NamedIndividual ;
+                    
+                    rdfs:label "stride length" ;
+                    
+                    skos:inScheme <http://www.symbiote-h2020.eu/ontology/bim-0.1/property#healthScheme> .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartresidence#systolicBloodPressure
+
+bim-sr:systolicBloodPressure rdf:type core:Property ,
+                                      owl:NamedIndividual ;
+                             
+                             rdfs:label "systolic blood pressure" ;
+                             
+                             skos:inScheme <http://www.symbiote-h2020.eu/ontology/bim-0.1/property#healthScheme> .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Attachment
+
+bim-ss:Attachment rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Catalog
+
+bim-ss:Catalog rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Message
+
+bim-ss:Message rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Order
+
+bim-ss:Order rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#OrderItem
+
+bim-ss:OrderItem rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Product
+
+bim-ss:Product rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Promotion
+
+bim-ss:Promotion rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Sender
+
+bim-ss:Sender rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Store
+
+bim-ss:Store rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#content
+
+bim-ss:content rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#description
+
+bim-ss:description rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#discount
+
+bim-ss:discount rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#end
+
+bim-ss:end rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#hasAttachment
+
+bim-ss:hasAttachment rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#hasMessage
+
+bim-ss:hasMessage rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#hasOrderItem
+
+bim-ss:hasOrderItem rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#hasProduct
+
+bim-ss:hasProduct rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#hasPromotion
+
+bim-ss:hasPromotion rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#hasSender
+
+bim-ss:hasSender rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#id
+
+bim-ss:id rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#newPrice
+
+bim-ss:newPrice rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#picture
+
+bim-ss:picture rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#price
+
+bim-ss:price rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#productId
+
+bim-ss:productId rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#quantity
+
+bim-ss:quantity rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#referencesProduct
+
+bim-ss:referencesProduct rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#start
+
+bim-ss:start rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#type
+
+bim-ss:type rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#ConsumableNeed
+
+bim-sy:ConsumableNeed rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#Fault
+
+bim-sy:Fault rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#HVACFault
+
+bim-sy:HVACFault rdf:type bim-sy:Fault ,
+                          owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#MaintenanceNeed
+
+bim-sy:MaintenanceNeed rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#PotentialSupplierOrganization
+
+bim-sy:PotentialSupplierOrganization rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#Route
+
+bim-sy:Route rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#RoutePoint
+
+bim-sy:RoutePoint rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#automatedSupplyChain
+
+bim-sy:automatedSupplyChain rdf:type bim-sy:HarbourServiceType ,
+                                     owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#averageFuelConsumptionPerNauticalMile
+
+bim-sy:averageFuelConsumptionPerNauticalMile rdf:type core:Property ,
+                                                      owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#causedByFault
+
+bim-sy:causedByFault rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#electricFault
+
+bim-sy:electricFault rdf:type bim-sy:Fault ,
+                              owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#engineFault
+
+bim-sy:engineFault rdf:type bim-sy:Fault ,
+                            owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#exhaustTemperature
+
+bim-sy:exhaustTemperature rdf:type core:Property ,
+                                   owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#getConsumableNeedsService
+
+bim-sy:getConsumableNeedsService rdf:type bim-sy:SmartYachtingService ,
+                                          owl:NamedIndividual ;
+                                 
+                                 core:name "getConsumableNeeds"^^xsd:string ;
+                                 
+                                 bim-sy:hasServiceType bim-sy:automatedSupplyChain ;
+                                 
+                                 core:hasResultType [ rdf:type core:ComplexDatatype ;
+                                                      core:isArray "true"^^xsd:boolean ;
+                                                      core:basedOnClass bim-sy:ConsumableNeed ;
+                                                      core:hasProperty [ rdf:type core:ComplexProperty ;
+                                                                         core:basedOnProperty bim-sy:hasPotentialSupplier ;
+                                                                         core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                            core:isArray "true"^^xsd:boolean ;
+                                                                                            core:basedOnClass bim-sy:PotentialSupplierOrganization ;
+                                                                                            core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                               core:basedOnProperty rdfs:label ;
+                                                                                                               core:hasDatatype xsd:string
+                                                                                                             ]
+                                                                                          ]
+                                                                       ] ,
+                                                                       [ rdf:type core:PrimitiveProperty ;
+                                                                         core:basedOnProperty core:description ;
+                                                                         core:hasDatatype xsd:string
+                                                                       ]
+                                                    ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#getLatestRouteService
+
+bim-sy:getLatestRouteService rdf:type bim-sy:SmartYachtingService ,
+                                      owl:NamedIndividual ;
+                             
+                             bim-sy:hasServiceType bim-sy:smartMooring ;
+                             
+                             core:hasResultType [ rdf:type core:ComplexDatatype ;
+                                                  core:isArray "true"^^xsd:boolean ;
+                                                  core:basedOnClass bim-sy:Route ;
+                                                  core:hasProperty [ rdf:type core:ComplexProperty ;
+                                                                     core:basedOnProperty bim-sy:hasPoint ;
+                                                                     core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                        core:basedOnClass bim-sy:RoutePoint ;
+                                                                                        core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                           core:basedOnProperty bim-sy:timestamp ;
+                                                                                                           core:hasDatatype xsd:dateTime
+                                                                                                         ] ,
+                                                                                                         [ rdf:type core:PrimitiveProperty ;
+                                                                                                           core:basedOnProperty bim-sm:hint ;
+                                                                                                           core:hasDatatype xsd:string
+                                                                                                         ] ,
+                                                                                                         [ rdf:type core:PrimitiveProperty ;
+                                                                                                           core:hasDatatype xsd:double ;
+                                                                                                           core:basedOnProperty geo:lat
+                                                                                                         ] ,
+                                                                                                         [ rdf:type core:PrimitiveProperty ;
+                                                                                                           core:hasDatatype xsd:double ;
+                                                                                                           core:basedOnProperty geo:long
+                                                                                                         ]
+                                                                                      ]
+                                                                   ]
+                                                ] ;
+                             
+                             core:hasParameter [ rdf:type core:Parameter ;
+                                                 core:mandatory "false"^^xsd:boolean ;
+                                                 core:name "since"^^xsd:string ;
+                                                 core:hasDatatype cnt:ContentAsBase64
+                                               ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#getMaintenanceNeedsService
+
+bim-sy:getMaintenanceNeedsService rdf:type bim-sy:SmartYachtingService ,
+                                           owl:NamedIndividual ;
+                                  
+                                  bim-sy:hasServiceType bim-sy:automatedSupplyChain ;
+                                  
+                                  core:hasResultType [ rdf:type core:ComplexDatatype ;
+                                                       core:isArray "true"^^xsd:boolean ;
+                                                       core:basedOnClass bim-sy:MaintenanceNeed ;
+                                                       core:hasProperty [ rdf:type core:ComplexProperty ;
+                                                                          core:basedOnProperty bim-sy:hasPotentialSupplier ;
+                                                                          core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                             core:isArray "true"^^xsd:boolean ;
+                                                                                             core:basedOnClass bim-sy:PotentialSupplierOrganization ;
+                                                                                             core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                core:basedOnProperty rdfs:label ;
+                                                                                                                core:hasDatatype xsd:string
+                                                                                                              ]
+                                                                                           ]
+                                                                        ] ,
+                                                                        [ rdf:type core:PrimitiveProperty ;
+                                                                          core:basedOnProperty core:description ;
+                                                                          core:hasDatatype xsd:string
+                                                                        ] ,
+                                                                        [ rdf:type core:ComplexProperty ;
+                                                                          core:basedOnProperty bim-sy:causedByFault ;
+                                                                          core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                             core:basedOnClass bim-sy:Fault ;
+                                                                                             core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                core:basedOnProperty rdfs:label ;
+                                                                                                                core:hasDatatype xsd:string
+                                                                                                              ]
+                                                                                           ]
+                                                                        ] ,
+                                                                        [ rdf:type core:PrimitiveProperty ;
+                                                                          core:basedOnProperty bim-sy:occurance ;
+                                                                          core:hasDatatype xsd:dateTime
+                                                                        ]
+                                                     ] .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#hasPoint
+
+bim-sy:hasPoint rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#hasPotentialSupplier
+
+bim-sy:hasPotentialSupplier rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#hydraulicFault
+
+bim-sy:hydraulicFault rdf:type bim-sy:Fault ,
+                               owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#occurance
+
+bim-sy:occurance rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#smartMooring
+
+bim-sy:smartMooring rdf:type bim-sy:HarbourServiceType ,
+                             owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#tankLevel
+
+bim-sy:tankLevel rdf:type core:Property ,
+                          owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#timestamp
+
+bim-sy:timestamp rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/bim/smartyachting#weelhouseFault
+
+bim-sy:weelhouseFault rdf:type bim-sy:Fault ,
+                               owl:NamedIndividual .
+
+
+
 ###  http://www.symbiote-h2020.eu/ontology/bim/unit#beatsPerMinute
 
 unit:beatsPerMinute rdf:type qu-dim:FrequencyUnit ,
@@ -9696,6 +11954,78 @@ unit:revolutionsPerMinute rdf:type qu-dim:RotationalSpeedUnit ,
                           qu:quantityKind qu-quantity:rotationalSpeed ;
                           
                           qu:referenceUnit qu-unit:radianPerSecond .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/core#Description
+
+core:Description rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/core#description
+
+core:description rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.symbiote-h2020.eu/ontology/core#name
+
+core:name rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/2000/01/rdf-schema#label
+
+rdfs:label rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/2001/XMLSchema#dateTime
+
+xsd:dateTime rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/2001/XMLSchema#decimal
+
+xsd:decimal rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/2001/XMLSchema#double
+
+xsd:double rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/2001/XMLSchema#integer
+
+xsd:integer rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/2001/XMLSchema#string
+
+xsd:string rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
+
+geo:lat rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#long
+
+geo:long rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/2011/content#ContentAsBase64
+
+cnt:ContentAsBase64 rdf:type owl:NamedIndividual .
 
 
 
