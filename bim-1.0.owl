@@ -24,7 +24,7 @@
                                             
                                             rdfs:label "symbIoTe Best Practice Information Model"@en ;
                                             
-                                            owl:versionInfo "v1.0 2017/06/27 12:00:00"^^xsd:string ;
+                                            owl:versionInfo "v1.0 2017/06/28 12:00:00"^^xsd:string ;
                                             
                                             rdfs:comment "Best Practice Information Model of symbIoTe."@en ;
                                             
@@ -554,18 +554,18 @@ bim-sr:DimmerCapability rdf:type owl:Class ;
                         
                         rdfs:subClassOf core:Capability ,
                                         [ rdf:type owl:Restriction ;
+                                          owl:onProperty core:hasParameter ;
+                                          owl:hasValue [ rdf:type core:Parameter ;
+                                                         core:name "level"^^xsd:string ;
+                                                         core:mandatory "true"^^xsd:boolean ;
+                                                         core:hasDatatype xsd:integer
+                                                       ]
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
                                           owl:onProperty core:hasEffect ;
                                           owl:onClass bim-sr:DimmerEffect ;
                                           owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
-                                        ],
-										[ rdf:type owl:Restriction ;
-                                          owl:onProperty core:hasParameter ;
-                                          owl:hasValue [ a core:Parameter ;
-											core:name "level"^^xsd:string ;
-											core:mandatory "true"^^xsd:boolean ;
-											core:hasDatatype xsd:integer 
-										  ]
-                                     ]	.
+                                        ] .
 
 
 
@@ -647,14 +647,14 @@ bim-sr:OnOffCapabililty rdf:type owl:Class ;
                                           owl:onClass bim-sr:OnOffEffect ;
                                           owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
                                         ] ,
-										[ rdf:type owl:Restriction ;
+                                        [ rdf:type owl:Restriction ;
                                           owl:onProperty core:hasParameter ;
-                                          owl:hasValue [ a core:Parameter ;
-											core:name "on"^^xsd:string ;
-											core:mandatory "true"^^xsd:boolean ;
-											core:hasDatatype xsd:boolean
-										  ]
-                                        ] .										
+                                          owl:hasValue [ rdf:type core:Parameter ;
+                                                         core:name "on"^^xsd:string ;
+                                                         core:mandatory "true"^^xsd:boolean ;
+                                                         core:hasDatatype xsd:boolean
+                                                       ]
+                                        ] .
 
 
 
@@ -715,37 +715,37 @@ bim-sr:RGBCapability rdf:type owl:Class ;
                      
                      rdfs:subClassOf core:Capability ,
                                      [ rdf:type owl:Restriction ;
+                                       owl:onProperty core:hasParameter ;
+                                       owl:hasValue [ rdf:type core:Parameter ;
+                                                      core:name "g"^^xsd:string ;
+                                                      core:mandatory "true"^^xsd:boolean ;
+                                                      core:hasRestriction bim-sr:BitValueRestriction ;
+                                                      core:hasDatatype xsd:integer
+                                                    ]
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty core:hasParameter ;
+                                       owl:hasValue [ rdf:type core:Parameter ;
+                                                      core:name "r"^^xsd:string ;
+                                                      core:mandatory "true"^^xsd:boolean ;
+                                                      core:hasRestriction bim-sr:BitValueRestriction ;
+                                                      core:hasDatatype xsd:integer
+                                                    ]
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty core:hasParameter ;
+                                       owl:hasValue [ rdf:type core:Parameter ;
+                                                      core:name "b"^^xsd:string ;
+                                                      core:mandatory "true"^^xsd:boolean ;
+                                                      core:hasRestriction bim-sr:BitValueRestriction ;
+                                                      core:hasDatatype xsd:integer
+                                                    ]
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
                                        owl:onProperty core:hasEffect ;
                                        owl:onClass bim-sr:RGBEffect ;
                                        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
-                                     ] ,
-									 [ rdf:type owl:Restriction ;
-                                          owl:onProperty core:hasParameter ;
-                                          owl:hasValue [ a core:Parameter ;
-											core:name "r"^^xsd:string ;
-											core:mandatory "true"^^xsd:boolean ;
-											core:hasDatatype xsd:integer ;
-											core:hasRestriction bim-sr:BitValueRestriction
-										  ]
-                                     ] ,
-									 [ rdf:type owl:Restriction ;
-                                          owl:onProperty core:hasParameter ;
-                                          owl:hasValue [ a core:Parameter ;
-											core:name "g"^^xsd:string ;
-											core:mandatory "true"^^xsd:boolean ;
-											core:hasDatatype xsd:integer ;
-											core:hasRestriction bim-sr:BitValueRestriction
-										  ]
-                                     ] ,
-									 [ rdf:type owl:Restriction ;
-                                          owl:onProperty core:hasParameter ;
-                                          owl:hasValue [ a core:Parameter ;
-											core:name "b"^^xsd:string ;
-											core:mandatory "true"^^xsd:boolean ;
-											core:hasDatatype xsd:integer ;
-											core:hasRestriction bim-sr:BitValueRestriction
-										  ]
-                                     ] . 
+                                     ] .
 
 
 
@@ -776,14 +776,15 @@ bim-sr:SetPositionCapability rdf:type owl:Class ;
                                                owl:onProperty core:hasEffect ;
                                                owl:onClass bim-sr:SetPositionEffect ;
                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
-                                             ],[ rdf:type owl:Restriction ;
-                                          owl:onProperty core:hasParameter ;
-                                          owl:hasValue [ a core:Parameter ;
-											core:name "position"^^xsd:string ;
-											core:mandatory "true"^^xsd:boolean ;
-											core:hasDatatype xsd:integer 
-										  ]
-                                     ] .
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty core:hasParameter ;
+                                               owl:hasValue [ rdf:type core:Parameter ;
+                                                              core:name "position"^^xsd:string ;
+                                                              core:mandatory "true"^^xsd:boolean ;
+                                                              core:hasDatatype xsd:integer
+                                                            ]
+                                             ] .
 
 
 
@@ -809,13 +810,13 @@ bim-sr:SetTemperatureCapability rdf:type owl:Class ;
                                                   owl:onClass bim-sr:SetTemperatureEffect ;
                                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
                                                 ] ,
-												[ rdf:type owl:Restriction ;
-                                          owl:onProperty core:hasParameter ;
-                                          owl:hasValue [ a core:Parameter ;
-											core:name "temperature"^^xsd:string ;
-											core:mandatory "true"^^xsd:boolean ;
-											core:hasDatatype xsd:double 
-										  ]
+                                                [ rdf:type owl:Restriction ;
+                                                  owl:onProperty core:hasParameter ;
+                                                  owl:hasValue [ rdf:type core:Parameter ;
+                                                                 core:name "temperature"^^xsd:string ;
+                                                                 core:mandatory "true"^^xsd:boolean ;
+                                                                 core:hasDatatype xsd:double
+                                                               ]
                                                 ] .
 
 
@@ -886,6 +887,11 @@ bim-sr:Window rdf:type owl:Class ;
 bim-ss:Attachment rdf:type owl:Class ;
                   
                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty bim-ss:type ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:string
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
                                     owl:onProperty core:name ;
                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                     owl:onDataRange xsd:string
@@ -894,18 +900,24 @@ bim-ss:Attachment rdf:type owl:Class ;
                                     owl:onProperty bim-ss:content ;
                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                     owl:onDataRange cnt:ContentAsBase64
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty bim-ss:type ;
-                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onDataRange xsd:string
                                   ] .
 
 
 
 ###  http://www.symbiote-h2020.eu/ontology/bim/smartstadium#Catalog
 
-bim-ss:Catalog rdf:type owl:Class .
+bim-ss:Catalog rdf:type owl:Class ;
+               
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty bim-ss:hasPromotion ;
+                                 owl:onClass bim-ss:Promotion ;
+                                 owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty bim-ss:hasMessage ;
+                                 owl:onClass bim-ss:Message ;
+                                 owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
+                               ] .
 
 
 
@@ -931,26 +943,16 @@ bim-ss:GetCatalogService rdf:type owl:Class ;
                                                                              core:hasDatatype [ rdf:type core:ComplexDatatype ;
                                                                                                 core:basedOnClass bim-ss:Message ;
                                                                                                 core:hasProperty [ rdf:type core:ComplexProperty ;
-                                                                                                                   core:basedOnProperty bim-ss:hasSender ;
-                                                                                                                   core:hasDatatype [ rdf:type core:ComplexDatatype ;
-                                                                                                                                      core:basedOnClass bim-ss:Sender ;
-                                                                                                                                      core:hasProperty [ rdf:type core:PrimitiveProperty ;
-                                                                                                                                                         core:basedOnProperty core:name ;
-                                                                                                                                                         core:hasDatatype xsd:string
-                                                                                                                                                       ]
-                                                                                                                                    ]
-                                                                                                                 ] ,
-                                                                                                                 [ rdf:type core:ComplexProperty ;
                                                                                                                    core:isArray "true"^^xsd:boolean ;
                                                                                                                    core:basedOnProperty bim-ss:hasAttachment ;
                                                                                                                    core:hasDatatype [ rdf:type core:ComplexDatatype ;
                                                                                                                                       core:basedOnClass bim-ss:Attachment ;
                                                                                                                                       core:hasProperty [ rdf:type core:PrimitiveProperty ;
-                                                                                                                                                         core:basedOnProperty bim-ss:type ;
+                                                                                                                                                         core:basedOnProperty core:name ;
                                                                                                                                                          core:hasDatatype xsd:string
                                                                                                                                                        ] ,
                                                                                                                                                        [ rdf:type core:PrimitiveProperty ;
-                                                                                                                                                         core:basedOnProperty core:name ;
+                                                                                                                                                         core:basedOnProperty bim-ss:type ;
                                                                                                                                                          core:hasDatatype xsd:string
                                                                                                                                                        ] ,
                                                                                                                                                        [ rdf:type core:PrimitiveProperty ;
@@ -960,12 +962,22 @@ bim-ss:GetCatalogService rdf:type owl:Class ;
                                                                                                                                     ]
                                                                                                                  ] ,
                                                                                                                  [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:content ;
+                                                                                                                   core:hasDatatype xsd:string
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:PrimitiveProperty ;
                                                                                                                    core:basedOnProperty bim-sm:timestamp ;
                                                                                                                    core:hasDatatype xsd:dateTime
                                                                                                                  ] ,
-                                                                                                                 [ rdf:type core:PrimitiveProperty ;
-                                                                                                                   core:basedOnProperty bim-ss:content ;
-                                                                                                                   core:hasDatatype xsd:string
+                                                                                                                 [ rdf:type core:ComplexProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:hasSender ;
+                                                                                                                   core:hasDatatype [ rdf:type core:ComplexDatatype ;
+                                                                                                                                      core:basedOnClass bim-ss:Sender ;
+                                                                                                                                      core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                                                                         core:basedOnProperty core:name ;
+                                                                                                                                                         core:hasDatatype xsd:string
+                                                                                                                                                       ]
+                                                                                                                                    ]
                                                                                                                  ]
                                                                                               ]
                                                                            ] ,
@@ -975,8 +987,24 @@ bim-ss:GetCatalogService rdf:type owl:Class ;
                                                                                                 core:isArray "true"^^xsd:boolean ;
                                                                                                 core:basedOnClass bim-ss:Promotion ;
                                                                                                 core:hasProperty [ rdf:type core:PrimitiveProperty ;
-                                                                                                                   core:basedOnProperty bim-ss:discount ;
+                                                                                                                   core:basedOnProperty bim-ss:id ;
+                                                                                                                   core:hasDatatype xsd:string
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:start ;
+                                                                                                                   core:hasDatatype xsd:dateTime
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:newPrice ;
                                                                                                                    core:hasDatatype xsd:decimal
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:end ;
+                                                                                                                   core:hasDatatype xsd:dateTime
+                                                                                                                 ] ,
+                                                                                                                 [ rdf:type core:PrimitiveProperty ;
+                                                                                                                   core:basedOnProperty bim-ss:description ;
+                                                                                                                   core:hasDatatype xsd:string
                                                                                                                  ] ,
                                                                                                                  [ rdf:type core:ComplexProperty ;
                                                                                                                    core:basedOnProperty bim-ss:referencesProduct ;
@@ -1001,24 +1029,8 @@ bim-ss:GetCatalogService rdf:type owl:Class ;
                                                                                                                                     ]
                                                                                                                  ] ,
                                                                                                                  [ rdf:type core:PrimitiveProperty ;
-                                                                                                                   core:basedOnProperty bim-ss:description ;
-                                                                                                                   core:hasDatatype xsd:string
-                                                                                                                 ] ,
-                                                                                                                 [ rdf:type core:PrimitiveProperty ;
-                                                                                                                   core:basedOnProperty bim-ss:id ;
-                                                                                                                   core:hasDatatype xsd:string
-                                                                                                                 ] ,
-                                                                                                                 [ rdf:type core:PrimitiveProperty ;
-                                                                                                                   core:basedOnProperty bim-ss:end ;
-                                                                                                                   core:hasDatatype xsd:dateTime
-                                                                                                                 ] ,
-                                                                                                                 [ rdf:type core:PrimitiveProperty ;
-                                                                                                                   core:basedOnProperty bim-ss:newPrice ;
+                                                                                                                   core:basedOnProperty bim-ss:discount ;
                                                                                                                    core:hasDatatype xsd:decimal
-                                                                                                                 ] ,
-                                                                                                                 [ rdf:type core:PrimitiveProperty ;
-                                                                                                                   core:basedOnProperty bim-ss:start ;
-                                                                                                                   core:hasDatatype xsd:dateTime
                                                                                                                  ]
                                                                                               ]
                                                                            ]
@@ -1040,15 +1052,7 @@ bim-ss:GetInformationService rdf:type owl:Class ;
                                                owl:onProperty core:hasResultType ;
                                                owl:hasValue [ rdf:type core:ComplexDatatype ;
                                                               core:basedOnClass bim-ss:Store ;
-                                                              core:hasProperty [ rdf:type core:PrimitiveProperty ;
-                                                                                 core:basedOnProperty core:name ;
-                                                                                 core:hasDatatype xsd:string
-                                                                               ] ,
-                                                                               [ rdf:type core:PrimitiveProperty ;
-                                                                                 core:basedOnProperty bim-ss:picture ;
-                                                                                 core:hasDatatype cnt:ContentAsBase64
-                                                                               ] ,
-                                                                               [ rdf:type core:ComplexProperty ;
+                                                              core:hasProperty [ rdf:type core:ComplexProperty ;
                                                                                  core:isArray "true"^^xsd:boolean ;
                                                                                  core:basedOnProperty bim-ss:hasProduct ;
                                                                                  core:hasDatatype [ rdf:type core:ComplexDatatype ;
@@ -1072,6 +1076,14 @@ bim-ss:GetInformationService rdf:type owl:Class ;
                                                                                                   ]
                                                                                ] ,
                                                                                [ rdf:type core:PrimitiveProperty ;
+                                                                                 core:basedOnProperty core:name ;
+                                                                                 core:hasDatatype xsd:string
+                                                                               ] ,
+                                                                               [ rdf:type core:PrimitiveProperty ;
+                                                                                 core:basedOnProperty bim-ss:picture ;
+                                                                                 core:hasDatatype cnt:ContentAsBase64
+                                                                               ] ,
+                                                                               [ rdf:type core:PrimitiveProperty ;
                                                                                  core:basedOnProperty bim-ss:id ;
                                                                                  core:hasDatatype xsd:string
                                                                                ]
@@ -1093,19 +1105,24 @@ bim-ss:GoodStore rdf:type owl:Class ;
 bim-ss:Message rdf:type owl:Class ;
                
                rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                 owl:onProperty bim-ss:hasSender ;
-                                 owl:onClass bim-ss:Sender ;
-                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
-                               ] ,
-                               [ rdf:type owl:Restriction ;
                                  owl:onProperty bim-sy:timestamp ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onDataRange xsd:dateTime
                                ] ,
                                [ rdf:type owl:Restriction ;
+                                 owl:onProperty bim-ss:hasSender ;
+                                 owl:onClass bim-ss:Sender ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
                                  owl:onProperty bim-ss:content ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onDataRange xsd:string
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty bim-ss:hasAttachment ;
+                                 owl:onClass bim-ss:Attachment ;
+                                 owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
                                ] .
 
 
@@ -1126,7 +1143,11 @@ bim-ss:NotificationService rdf:type owl:Class ;
                                                             core:mandatory "true"^^xsd:boolean ;
                                                             core:hasDatatype [ rdf:type core:ComplexDatatype ;
                                                                                core:basedOnClass bim-ss:Message ;
-                                                                               core:hasProperty [ rdf:type core:ComplexProperty ;
+                                                                               core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                                                  core:basedOnProperty bim-ss:content ;
+                                                                                                  core:hasDatatype xsd:string
+                                                                                                ] ,
+                                                                                                [ rdf:type core:ComplexProperty ;
                                                                                                   core:basedOnProperty bim-ss:hasSender ;
                                                                                                   core:hasDatatype [ rdf:type core:ComplexDatatype ;
                                                                                                                      core:basedOnClass bim-ss:Sender ;
@@ -1135,10 +1156,6 @@ bim-ss:NotificationService rdf:type owl:Class ;
                                                                                                                                         core:hasDatatype xsd:string
                                                                                                                                       ]
                                                                                                                    ]
-                                                                                                ] ,
-                                                                                                [ rdf:type core:PrimitiveProperty ;
-                                                                                                  core:basedOnProperty bim-ss:content ;
-                                                                                                  core:hasDatatype xsd:string
                                                                                                 ] ,
                                                                                                 [ rdf:type core:PrimitiveProperty ;
                                                                                                   core:basedOnProperty bim-sm:timestamp ;
@@ -1150,11 +1167,11 @@ bim-ss:NotificationService rdf:type owl:Class ;
                                                                                                   core:hasDatatype [ rdf:type core:ComplexDatatype ;
                                                                                                                      core:basedOnClass bim-ss:Attachment ;
                                                                                                                      core:hasProperty [ rdf:type core:PrimitiveProperty ;
-                                                                                                                                        core:basedOnProperty core:name ;
+                                                                                                                                        core:basedOnProperty bim-ss:type ;
                                                                                                                                         core:hasDatatype xsd:string
                                                                                                                                       ] ,
                                                                                                                                       [ rdf:type core:PrimitiveProperty ;
-                                                                                                                                        core:basedOnProperty bim-ss:type ;
+                                                                                                                                        core:basedOnProperty core:name ;
                                                                                                                                         core:hasDatatype xsd:string
                                                                                                                                       ] ,
                                                                                                                                       [ rdf:type core:PrimitiveProperty ;
@@ -1174,6 +1191,11 @@ bim-ss:NotificationService rdf:type owl:Class ;
 bim-ss:Order rdf:type owl:Class ;
              
              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty bim-ss:referencesPromotions ;
+                               owl:onClass bim-ss:Promotion ;
+                               owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
                                owl:onProperty bim-ss:hasOrderItem ;
                                owl:onClass bim-ss:OrderItem ;
                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
@@ -1204,6 +1226,10 @@ bim-ss:PlaceOrderService rdf:type owl:Class ;
                          
                          rdfs:subClassOf bim-ss:RetailerService ,
                                          [ rdf:type owl:Restriction ;
+                                           owl:onProperty core:hasResultType ;
+                                           owl:hasValue xsd:string
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
                                            owl:onProperty core:hasParameter ;
                                            owl:hasValue [ rdf:type core:Parameter ;
                                                           core:name "order"^^xsd:string ;
@@ -1226,10 +1252,6 @@ bim-ss:PlaceOrderService rdf:type owl:Class ;
                                                                                               ]
                                                                            ]
                                                         ]
-                                         ] ,
-                                         [ rdf:type owl:Restriction ;
-                                           owl:onProperty core:hasResultType ;
-                                           owl:hasValue xsd:string
                                          ] .
 
 
@@ -1239,9 +1261,9 @@ bim-ss:PlaceOrderService rdf:type owl:Class ;
 bim-ss:Product rdf:type owl:Class ;
                
                rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                 owl:onProperty bim-ss:price ;
+                                 owl:onProperty bim-ss:id ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onDataRange xsd:decimal
+                                 owl:onDataRange xsd:string
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty bim-ss:picture ;
@@ -1254,9 +1276,9 @@ bim-ss:Product rdf:type owl:Class ;
                                  owl:onDataRange xsd:string
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty bim-ss:id ;
+                                 owl:onProperty bim-ss:price ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onDataRange xsd:string
+                                 owl:onDataRange xsd:decimal
                                ] .
 
 
@@ -1266,16 +1288,6 @@ bim-ss:Product rdf:type owl:Class ;
 bim-ss:Promotion rdf:type owl:Class ;
                  
                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                   owl:onProperty bim-ss:newPrice ;
-                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onDataRange xsd:decimal
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty bim-ss:start ;
-                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onDataRange xsd:dateTime
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
                                    owl:onProperty bim-ss:discount ;
                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                    owl:onDataRange xsd:decimal
@@ -1291,14 +1303,24 @@ bim-ss:Promotion rdf:type owl:Class ;
                                    owl:onDataRange xsd:string
                                  ] ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty bim-ss:end ;
+                                   owl:onProperty bim-ss:newPrice ;
                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onDataRange xsd:dateTime
+                                   owl:onDataRange xsd:decimal
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty bim-ss:referencesProduct ;
                                    owl:onClass bim-ss:Product ;
                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty bim-ss:end ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:dateTime
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty bim-ss:start ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:dateTime
                                  ] .
 
 
@@ -1307,7 +1329,12 @@ bim-ss:Promotion rdf:type owl:Class ;
 
 bim-ss:PromowallDevice rdf:type owl:Class ;
                        
-                       rdfs:subClassOf core:Device .
+                       rdfs:subClassOf core:Device ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty bim-sr:providesService ;
+                                         owl:onClass bim-ss:PromowallService ;
+                                         owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
+                                       ] .
 
 
 
@@ -1446,7 +1473,12 @@ bim-ss:PublishPromotionService rdf:type owl:Class ;
 
 bim-ss:RetailerDevice rdf:type owl:Class ;
                       
-                      rdfs:subClassOf core:Device .
+                      rdfs:subClassOf core:Device ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty bim-sr:providesService ;
+                                        owl:onClass bim-ss:RetailerService ;
+                                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
+                                      ] .
 
 
 
@@ -1475,9 +1507,14 @@ bim-ss:Sender rdf:type owl:Class ;
 bim-ss:Store rdf:type owl:Class ;
              
              rdfs:subClassOf [ rdf:type owl:Restriction ;
-                               owl:onProperty bim-ss:id ;
+                               owl:onProperty core:name ;
                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                owl:onDataRange xsd:string
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bim-ss:hasProduct ;
+                               owl:onClass bim-ss:Product ;
+                               owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
                              ] ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty bim-ss:picture ;
@@ -1485,9 +1522,14 @@ bim-ss:Store rdf:type owl:Class ;
                                owl:onDataRange cnt:ContentAsBase64
                              ] ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty core:name ;
+                               owl:onProperty bim-ss:id ;
                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                owl:onDataRange xsd:string
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bim-ss:hasPromotion ;
+                               owl:onClass bim-ss:Promotion ;
+                               owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
                              ] .
 
 
@@ -1496,7 +1538,12 @@ bim-ss:Store rdf:type owl:Class ;
 
 bim-ss:VisitorDevice rdf:type owl:Class ;
                      
-                     rdfs:subClassOf core:Device .
+                     rdfs:subClassOf core:Device ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty bim-sr:providesService ;
+                                       owl:onClass bim-ss:VisitorService ;
+                                       owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
+                                     ] .
 
 
 
@@ -1521,14 +1568,14 @@ bim-sy:BlackWaterTank rdf:type owl:Class ;
 bim-sy:ConsumableNeed rdf:type owl:Class ;
                       
                       rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                        owl:onProperty qu:description ;
-                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                        owl:onDataRange xsd:string
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
                                         owl:onProperty bim-sy:hasPotentialSupplier ;
                                         owl:onClass bim-sy:PotentialSupplierOrganization ;
                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty qu:description ;
+                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onDataRange xsd:string
                                       ] .
 
 
@@ -1579,6 +1626,11 @@ bim-sy:MaintenanceNeed rdf:type owl:Class ;
                                          owl:onDataRange xsd:string
                                        ] ,
                                        [ rdf:type owl:Restriction ;
+                                         owl:onProperty bim-sy:hasPotentialSupplier ;
+                                         owl:onClass bim-sy:PotentialSupplierOrganization ;
+                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
                                          owl:onProperty bim-sy:causedByFault ;
                                          owl:onClass bim-sy:Fault ;
                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
@@ -1587,11 +1639,6 @@ bim-sy:MaintenanceNeed rdf:type owl:Class ;
                                          owl:onProperty bim-sy:occurance ;
                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                          owl:onDataRange xsd:dateTime
-                                       ] ,
-                                       [ rdf:type owl:Restriction ;
-                                         owl:onProperty bim-sy:hasPotentialSupplier ;
-                                         owl:onClass bim-sy:PotentialSupplierOrganization ;
-                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
                                        ] .
 
 
@@ -1705,6 +1752,11 @@ bim-sy:Yacht rdf:type owl:Class ;
                                owl:onProperty bim-sy:supportsServiceType ;
                                owl:onClass bim-sy:HarbourServiceType ;
                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bim-sy:hasSupportedService ;
+                               owl:onClass bim-sy:SmartYachtingService ;
+                               owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
                              ] .
 
 
@@ -11344,7 +11396,11 @@ bim-sy:getConsumableNeedsService rdf:type bim-sy:SmartYachtingService ,
                                  core:hasResultType [ rdf:type core:ComplexDatatype ;
                                                       core:isArray "true"^^xsd:boolean ;
                                                       core:basedOnClass bim-sy:ConsumableNeed ;
-                                                      core:hasProperty [ rdf:type core:ComplexProperty ;
+                                                      core:hasProperty [ rdf:type core:PrimitiveProperty ;
+                                                                         core:basedOnProperty core:description ;
+                                                                         core:hasDatatype xsd:string
+                                                                       ] ,
+                                                                       [ rdf:type core:ComplexProperty ;
                                                                          core:basedOnProperty bim-sy:hasPotentialSupplier ;
                                                                          core:hasDatatype [ rdf:type core:ComplexDatatype ;
                                                                                             core:isArray "true"^^xsd:boolean ;
@@ -11354,10 +11410,6 @@ bim-sy:getConsumableNeedsService rdf:type bim-sy:SmartYachtingService ,
                                                                                                                core:hasDatatype xsd:string
                                                                                                              ]
                                                                                           ]
-                                                                       ] ,
-                                                                       [ rdf:type core:PrimitiveProperty ;
-                                                                         core:basedOnProperty core:description ;
-                                                                         core:hasDatatype xsd:string
                                                                        ]
                                                     ] .
 
@@ -11378,16 +11430,16 @@ bim-sy:getLatestRouteService rdf:type bim-sy:SmartYachtingService ,
                                                                      core:hasDatatype [ rdf:type core:ComplexDatatype ;
                                                                                         core:basedOnClass bim-sy:RoutePoint ;
                                                                                         core:hasProperty [ rdf:type core:PrimitiveProperty ;
-                                                                                                           core:basedOnProperty bim-sy:timestamp ;
-                                                                                                           core:hasDatatype xsd:dateTime
-                                                                                                         ] ,
-                                                                                                         [ rdf:type core:PrimitiveProperty ;
                                                                                                            core:basedOnProperty bim-sm:hint ;
                                                                                                            core:hasDatatype xsd:string
                                                                                                          ] ,
                                                                                                          [ rdf:type core:PrimitiveProperty ;
                                                                                                            core:hasDatatype xsd:double ;
                                                                                                            core:basedOnProperty geo:lat
+                                                                                                         ] ,
+                                                                                                         [ rdf:type core:PrimitiveProperty ;
+                                                                                                           core:basedOnProperty bim-sy:timestamp ;
+                                                                                                           core:hasDatatype xsd:dateTime
                                                                                                          ] ,
                                                                                                          [ rdf:type core:PrimitiveProperty ;
                                                                                                            core:hasDatatype xsd:double ;
@@ -11426,10 +11478,6 @@ bim-sy:getMaintenanceNeedsService rdf:type bim-sy:SmartYachtingService ,
                                                                                                               ]
                                                                                            ]
                                                                         ] ,
-                                                                        [ rdf:type core:PrimitiveProperty ;
-                                                                          core:basedOnProperty core:description ;
-                                                                          core:hasDatatype xsd:string
-                                                                        ] ,
                                                                         [ rdf:type core:ComplexProperty ;
                                                                           core:basedOnProperty bim-sy:causedByFault ;
                                                                           core:hasDatatype [ rdf:type core:ComplexDatatype ;
@@ -11443,6 +11491,10 @@ bim-sy:getMaintenanceNeedsService rdf:type bim-sy:SmartYachtingService ,
                                                                         [ rdf:type core:PrimitiveProperty ;
                                                                           core:basedOnProperty bim-sy:occurance ;
                                                                           core:hasDatatype xsd:dateTime
+                                                                        ] ,
+                                                                        [ rdf:type core:PrimitiveProperty ;
+                                                                          core:basedOnProperty core:description ;
+                                                                          core:hasDatatype xsd:string
                                                                         ]
                                                      ] .
 
@@ -11978,6 +12030,12 @@ core:name rdf:type owl:NamedIndividual .
 ###  http://www.w3.org/2000/01/rdf-schema#label
 
 rdfs:label rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/2001/XMLSchema#boolean
+
+xsd:boolean rdf:type owl:NamedIndividual .
 
 
 

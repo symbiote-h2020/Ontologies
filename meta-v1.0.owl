@@ -12,7 +12,7 @@
                                              
                                              rdfs:label "symbIoTe Meta Information Model"@en ;
                                              
-                                             owl:versionInfo "v 1.0 2017/06/27 12:00:00"^^xsd:string ;
+                                             owl:versionInfo "v 1.0 2017/06/28 12:00:00"^^xsd:string ;
                                              
                                              rdfs:comment "Meta Information Model of the symbIoTe project."@en ;
                                              
@@ -345,14 +345,24 @@
 ###  http://www.symbiote-h2020.eu/ontology/core#Resource
 
 <http://www.symbiote-h2020.eu/ontology/core#Resource> rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty :hasStatus ;
+                                                                        owl:onClass :ResourceStatus ;
+                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty :hasPopularity ;
+                                                                        owl:onClass :ResourcePopularity ;
+                                                                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
+                                                                      ] ,
+                                                                      [ rdf:type owl:Restriction ;
                                                                         owl:onProperty :trust ;
                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                         owl:onDataRange xsd:double
                                                                       ] ,
                                                                       [ rdf:type owl:Restriction ;
-                                                                        owl:onProperty :hasStatus ;
-                                                                        owl:onClass :ResourceStatus ;
-                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                                                        owl:onProperty :supportsOptionalFeature ;
+                                                                        owl:onClass :OptionalFeature ;
+                                                                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
                                                                       ] .
 
 
@@ -362,13 +372,13 @@
 :AccessAttribute rdf:type owl:Class ;
                  
                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#value> ;
+                                   owl:cardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
                                    owl:onProperty :hasMetaAttribute ;
                                    owl:onClass :MetaAccessAttribute ;
                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#value> ;
-                                   owl:cardinality "1"^^xsd:nonNegativeInteger
                                  ] .
 
 
@@ -378,6 +388,11 @@
 :Federation rdf:type owl:Class ;
             
             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :public ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onDataRange xsd:boolean
+                            ] ,
+                            [ rdf:type owl:Restriction ;
                               owl:onProperty :slaDefinition ;
                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                               owl:onDataRange xsd:string
@@ -386,11 +401,6 @@
                               owl:onProperty :hasMembers ;
                               owl:onClass :InterworkingService ;
                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :public ;
-                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                              owl:onDataRange xsd:boolean
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#id> ;
@@ -410,9 +420,14 @@
 :InformationModel rdf:type owl:Class ;
                   
                   rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasDefinition ;
-                                    owl:onClass owl:Ontology ;
-                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                    owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#id> ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange <http://www.symbiote-h2020.eu/ontology/core#ID>
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :usedBy ;
+                                    owl:onClass :InterworkingService ;
+                                    owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :ownedBy ;
@@ -420,14 +435,14 @@
                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
                                   ] ,
                                   [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasDefinition ;
+                                    owl:onClass owl:Ontology ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
                                     owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#name> ;
                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                     owl:onDataRange xsd:string
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#id> ;
-                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onDataRange <http://www.symbiote-h2020.eu/ontology/core#ID>
                                   ] .
 
 
@@ -439,11 +454,16 @@
                      rdfs:subClassOf [ rdf:type owl:Restriction ;
                                        owl:onProperty :usesInformationModel ;
                                        owl:onClass :InformationModel ;
-                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                       owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
                                      ] ,
                                      [ rdf:type owl:Restriction ;
                                        owl:onProperty :providedBy ;
                                        owl:onClass :Platform ;
+                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :usesInformationModel ;
+                                       owl:onClass :InformationModel ;
                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
                                      ] ,
                                      [ rdf:type owl:Restriction ;
@@ -464,23 +484,23 @@
 :Mapping rdf:type owl:Class ;
          
          rdfs:subClassOf [ rdf:type owl:Restriction ;
-                           owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#id> ;
-                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                           owl:onDataRange <http://www.symbiote-h2020.eu/ontology/core#ID>
-                         ] ,
-                         [ rdf:type owl:Restriction ;
                            owl:onProperty :hasSourceModel ;
-                           owl:onClass :InformationModel ;
-                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :hasDestinationModel ;
                            owl:onClass :InformationModel ;
                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :hasDefinition ;
                            owl:onClass <http://knowledgeweb.semanticweb.org/heterogeneity/alignment#Alignment> ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#id> ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange <http://www.symbiote-h2020.eu/ontology/core#ID>
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasDestinationModel ;
+                           owl:onClass :InformationModel ;
                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
                          ] ,
                          [ rdf:type owl:Restriction ;
@@ -496,9 +516,9 @@
 :MetaAccessAttribute rdf:type owl:Class ;
                      
                      rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                       owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#name> ;
-                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                       owl:onDataRange xsd:string
+                                       owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#hasDatatype> ;
+                                       owl:onClass <http://www.symbiote-h2020.eu/ontology/core#Datatype> ;
+                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
                                      ] ,
                                      [ rdf:type owl:Restriction ;
                                        owl:onProperty :systemAssigned ;
@@ -506,9 +526,19 @@
                                        owl:onDataRange xsd:boolean
                                      ] ,
                                      [ rdf:type owl:Restriction ;
-                                       owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#hasDatatype> ;
-                                       owl:onClass <http://www.symbiote-h2020.eu/ontology/core#Datatype> ;
-                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                       owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#name> ;
+                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                       owl:onDataRange xsd:string
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#hasRestriction> ;
+                                       owl:onClass <http://www.symbiote-h2020.eu/ontology/core#Restriction> ;
+                                       owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty rdfs:comment ;
+                                       owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                       owl:onDataRange rdf:langString
                                      ] .
 
 
@@ -524,11 +554,6 @@
 :Platform rdf:type owl:Class ;
           
           rdfs:subClassOf [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#id> ;
-                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onDataRange <http://www.symbiote-h2020.eu/ontology/core#ID>
-                          ] ,
-                          [ rdf:type owl:Restriction ;
                             owl:onProperty rdfs:label ;
                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onDataRange rdf:langString
@@ -537,6 +562,31 @@
                             owl:onProperty :ownedBy ;
                             owl:onClass :User ;
                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :supportsOptionalFeature ;
+                            owl:onClass :OptionalFeature ;
+                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasService ;
+                            owl:onClass :InterworkingService ;
+                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#id> ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange <http://www.symbiote-h2020.eu/ontology/core#ID>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :definesAttribute ;
+                            owl:onClass :MetaAccessAttribute ;
+                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty rdfs:comment ;
+                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange rdf:langString
                           ] .
 
 
@@ -563,14 +613,14 @@
 :ResourceStatus rdf:type owl:Class ;
                 
                 rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                  owl:onProperty :load ;
-                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onDataRange xsd:integer
-                                ] ,
-                                [ rdf:type owl:Restriction ;
                                   owl:onProperty :isAvailable ;
                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                   owl:onDataRange xsd:boolean
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :load ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onDataRange xsd:integer
                                 ] .
 
 
@@ -580,9 +630,19 @@
 :User rdf:type owl:Class ;
       
       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#id> ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange <http://www.symbiote-h2020.eu/ontology/core#ID>
+                      ] ,
+                      [ rdf:type owl:Restriction ;
                         owl:onProperty :password ;
                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                         owl:onDataRange xsd:string
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isOwnerOf ;
+                        owl:onClass :InformationModel ;
+                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
                       ] ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :username ;
@@ -590,9 +650,14 @@
                         owl:onDataRange xsd:string
                       ] ,
                       [ rdf:type owl:Restriction ;
-                        owl:onProperty <http://www.symbiote-h2020.eu/ontology/core#id> ;
-                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                        owl:onDataRange <http://www.symbiote-h2020.eu/ontology/core#ID>
+                        owl:onProperty :isOwnerOf ;
+                        owl:onClass :Platform ;
+                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasAttribute ;
+                        owl:onClass :AccessAttribute ;
+                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
                       ] .
 
 
