@@ -13,7 +13,7 @@
                                              
                                              rdfs:label "symbIoTe Meta Information Model"@en ;
                                              
-                                             owl:versionInfo "v 2.0.0 2017/09/04 12:00:00"^^xsd:string ;
+                                             owl:versionInfo "v 2.0.0 2017/09/13 12:00:00"^^xsd:string ;
                                              
                                              rdfs:comment "Meta Information Model of the symbIoTe project."@en ;
                                              
@@ -275,7 +275,7 @@
 
 :trust rdf:type owl:DatatypeProperty ;
        
-       rdfs:range xsd:double .
+       rdfs:range xsd:decimal .
 
 
 
@@ -334,7 +334,7 @@ core:Resource rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                                       [ rdf:type owl:Restriction ;
                                                                         owl:onProperty :trust ;
                                                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                        owl:onDataRange xsd:double
+                                                                        owl:onDataRange xsd:decimal
                                                                       ] ,
                                                                       [ rdf:type owl:Restriction ;
                                                                         owl:onProperty :supportsOptionalFeature ;

@@ -12,7 +12,7 @@
                                             
                                             rdfs:label "symbIoTe Smart Residence Best Practice Information Model"@en ;
                                             
-                                            owl:versionInfo "v2.0.0 2017/09/11 12:00:00"^^xsd:string ;
+                                            owl:versionInfo "v2.0.0 2017/09/13 12:00:00"^^xsd:string ;
                                             
                                             rdfs:comment "Smart Residence part of the Best Practice Information Model of symbIoTe."@en ;
                                             
@@ -104,7 +104,7 @@
                                           owl:hasValue [ rdf:type core:Parameter ;
                                                          core:name "level"^^xsd:string ;
                                                          core:mandatory "true"^^xsd:boolean ;
-                                                         core:hasDatatype xsd:integer
+                                                         core:hasDatatype core:int
                                                        ]
                                         ] ,
                                         [ rdf:type owl:Restriction ;
@@ -198,7 +198,7 @@
                                           owl:hasValue [ rdf:type core:Parameter ;
                                                          core:name "on"^^xsd:string ;
                                                          core:mandatory "true"^^xsd:boolean ;
-                                                         core:hasDatatype xsd:boolean
+                                                         core:hasDatatype core:boolean
                                                        ]
                                         ] .
 
@@ -266,7 +266,7 @@
                                                       core:name "g"^^xsd:string ;
                                                       core:mandatory "true"^^xsd:boolean ;
                                                       core:hasRestriction :BitValueRestriction ;
-                                                      core:hasDatatype xsd:integer
+                                                      core:hasDatatype core:int
                                                     ]
                                      ] ,
                                      [ rdf:type owl:Restriction ;
@@ -275,7 +275,7 @@
                                                       core:name "r"^^xsd:string ;
                                                       core:mandatory "true"^^xsd:boolean ;
                                                       core:hasRestriction :BitValueRestriction ;
-                                                      core:hasDatatype xsd:integer
+                                                      core:hasDatatype core:int
                                                     ]
                                      ] ,
                                      [ rdf:type owl:Restriction ;
@@ -284,7 +284,7 @@
                                                       core:name "b"^^xsd:string ;
                                                       core:mandatory "true"^^xsd:boolean ;
                                                       core:hasRestriction :BitValueRestriction ;
-                                                      core:hasDatatype xsd:integer
+                                                      core:hasDatatype core:int
                                                     ]
                                      ] ,
                                      [ rdf:type owl:Restriction ;
@@ -328,7 +328,7 @@
                                                owl:hasValue [ rdf:type core:Parameter ;
                                                               core:name "position"^^xsd:string ;
                                                               core:mandatory "true"^^xsd:boolean ;
-                                                              core:hasDatatype xsd:double
+                                                              core:hasDatatype core:decimal
                                                             ]
                                              ] .
 
@@ -361,7 +361,7 @@
                                                   owl:hasValue [ rdf:type core:Parameter ;
                                                                  core:name "temperature"^^xsd:string ;
                                                                  core:mandatory "true"^^xsd:boolean ;
-                                                                 core:hasDatatype xsd:double
+                                                                 core:hasDatatype core:decimal
                                                                ]
                                                 ] .
 
@@ -438,9 +438,9 @@
 :BitValueRestriction rdf:type core:RangeRestriction ,
                                     owl:NamedIndividual ;
                            
-                           core:min "0.0"^^xsd:double ;
+                           core:min "0.0"^^xsd:decimal ;
                            
-                           core:max "255.0"^^xsd:double .
+                           core:max "255.0"^^xsd:decimal .
 
 
 

@@ -10,7 +10,7 @@
                                             
                                             rdfs:label "symbIoTe Smart Stadium Best Practice Information Model"@en ;
                                             
-                                            owl:versionInfo "v2.0.0 2017/09/04 12:00:00"^^xsd:string ;
+                                            owl:versionInfo "v2.0.0 2017/09/13 12:00:00"^^xsd:string ;
                                             
                                             rdfs:comment "Smart Stadium part of the Best Practice Information Model of symbIoTe."@en ;
                                             
@@ -266,25 +266,25 @@
                                                                                                                                       core:basedOnClass :Attachment ;
                                                                                                                                       core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                                                          core:basedOnProperty core:name ;
-                                                                                                                                                         core:hasDatatype xsd:string
+                                                                                                                                                         core:hasDatatype core:string
                                                                                                                                                        ] ,
                                                                                                                                                        [ rdf:type core:PrimitiveProperty ;
                                                                                                                                                          core:basedOnProperty :type ;
-                                                                                                                                                         core:hasDatatype xsd:string
+                                                                                                                                                         core:hasDatatype core:string
                                                                                                                                                        ] ,
                                                                                                                                                        [ rdf:type core:PrimitiveProperty ;
                                                                                                                                                          core:basedOnProperty :content ;
-                                                                                                                                                         core:hasDatatype xsd:base64Binary
+                                                                                                                                                         core:hasDatatype core:base64Binary
                                                                                                                                                        ]
                                                                                                                                     ]
                                                                                                                  ] ,
                                                                                                                  [ rdf:type core:PrimitiveProperty ;
                                                                                                                    core:basedOnProperty :content ;
-                                                                                                                   core:hasDatatype xsd:string
+                                                                                                                   core:hasDatatype core:string
                                                                                                                  ] ,
                                                                                                                  [ rdf:type core:PrimitiveProperty ;
                                                                                                                    core:basedOnProperty :timestamp ;
-                                                                                                                   core:hasDatatype xsd:dateTime
+                                                                                                                   core:hasDatatype core:dateTime
                                                                                                                  ] ,
                                                                                                                  [ rdf:type core:ComplexProperty ;
                                                                                                                    core:basedOnProperty :hasSender ;
@@ -292,7 +292,7 @@
                                                                                                                                       core:basedOnClass :Sender ;
                                                                                                                                       core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                                                          core:basedOnProperty core:name ;
-                                                                                                                                                         core:hasDatatype xsd:string
+                                                                                                                                                         core:hasDatatype core:string
                                                                                                                                                        ]
                                                                                                                                     ]
                                                                                                                  ]
@@ -305,23 +305,23 @@
                                                                                                 core:basedOnClass :Promotion ;
                                                                                                 core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                    core:basedOnProperty core:id ;
-                                                                                                                   core:hasDatatype xsd:string
+                                                                                                                   core:hasDatatype core:string
                                                                                                                  ] ,
                                                                                                                  [ rdf:type core:PrimitiveProperty ;
                                                                                                                    core:basedOnProperty :start ;
-                                                                                                                   core:hasDatatype xsd:dateTime
+                                                                                                                   core:hasDatatype core:dateTime
                                                                                                                  ] ,
                                                                                                                  [ rdf:type core:PrimitiveProperty ;
                                                                                                                    core:basedOnProperty :newPrice ;
-                                                                                                                   core:hasDatatype xsd:decimal
+                                                                                                                   core:hasDatatype core:decimal
                                                                                                                  ] ,
                                                                                                                  [ rdf:type core:PrimitiveProperty ;
                                                                                                                    core:basedOnProperty :end ;
-                                                                                                                   core:hasDatatype xsd:dateTime
+                                                                                                                   core:hasDatatype core:dateTime
                                                                                                                  ] ,
                                                                                                                  [ rdf:type core:PrimitiveProperty ;
                                                                                                                    core:basedOnProperty core:name ;
-                                                                                                                   core:hasDatatype xsd:string
+                                                                                                                   core:hasDatatype core:string
                                                                                                                  ] ,
                                                                                                                  [ rdf:type core:ComplexProperty ;
                                                                                                                    core:basedOnProperty :referencesProduct ;
@@ -329,25 +329,25 @@
                                                                                                                                       core:basedOnClass :Product ;
                                                                                                                                       core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                                                          core:basedOnProperty :picture ;
-                                                                                                                                                         core:hasDatatype xsd:base64Binary
+                                                                                                                                                         core:hasDatatype core:base64Binary
                                                                                                                                                        ] ,
                                                                                                                                                        [ rdf:type core:PrimitiveProperty ;
                                                                                                                                                          core:basedOnProperty :price ;
-                                                                                                                                                         core:hasDatatype xsd:decimal
+                                                                                                                                                         core:hasDatatype core:decimal
                                                                                                                                                        ] ,
                                                                                                                                                        [ rdf:type core:PrimitiveProperty ;
                                                                                                                                                          core:basedOnProperty core:id ;
-                                                                                                                                                         core:hasDatatype xsd:string
+                                                                                                                                                         core:hasDatatype core:string
                                                                                                                                                        ] ,
                                                                                                                                                        [ rdf:type core:PrimitiveProperty ;
                                                                                                                                                          core:basedOnProperty core:name ;
-                                                                                                                                                         core:hasDatatype xsd:string
+                                                                                                                                                         core:hasDatatype core:string
                                                                                                                                                        ]
                                                                                                                                     ]
                                                                                                                  ] ,
                                                                                                                  [ rdf:type core:PrimitiveProperty ;
                                                                                                                    core:basedOnProperty :discount ;
-                                                                                                                   core:hasDatatype xsd:decimal
+                                                                                                                   core:hasDatatype core:decimal
                                                                                                                  ]
                                                                                               ]
                                                                            ]
@@ -355,7 +355,7 @@
                                          ] ,
                                          [ rdf:type owl:Restriction ;
                                            owl:onProperty core:hasResultType ;
-                                           owl:hasValue xsd:string
+                                           owl:hasValue core:string
                                          ] .
 
 
@@ -376,33 +376,33 @@
                                                                                                     core:basedOnClass :Product ;
                                                                                                     core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                        core:basedOnProperty core:id ;
-                                                                                                                       core:hasDatatype xsd:string
+                                                                                                                       core:hasDatatype core:string
                                                                                                                      ] ,
                                                                                                                      [ rdf:type core:PrimitiveProperty ;
                                                                                                                        core:basedOnProperty core:name ;
-                                                                                                                       core:hasDatatype xsd:string
+                                                                                                                       core:hasDatatype core:string
                                                                                                                      ] ,
                                                                                                                      [ rdf:type core:PrimitiveProperty ;
                                                                                                                        core:basedOnProperty :picture ;
-                                                                                                                       core:hasDatatype xsd:base64Binary
+                                                                                                                       core:hasDatatype core:base64Binary
                                                                                                                      ] ,
                                                                                                                      [ rdf:type core:PrimitiveProperty ;
                                                                                                                        core:basedOnProperty :price ;
-                                                                                                                       core:hasDatatype xsd:decimal
+                                                                                                                       core:hasDatatype core:decimal
                                                                                                                      ]
                                                                                                   ]
                                                                                ] ,
                                                                                [ rdf:type core:PrimitiveProperty ;
                                                                                  core:basedOnProperty core:name ;
-                                                                                 core:hasDatatype xsd:string
+                                                                                 core:hasDatatype core:string
                                                                                ] ,
                                                                                [ rdf:type core:PrimitiveProperty ;
                                                                                  core:basedOnProperty :picture ;
-                                                                                 core:hasDatatype xsd:base64Binary
+                                                                                 core:hasDatatype core:base64Binary
                                                                                ] ,
                                                                                [ rdf:type core:PrimitiveProperty ;
                                                                                  core:basedOnProperty core:id ;
-                                                                                 core:hasDatatype xsd:string
+                                                                                 core:hasDatatype core:string
                                                                                ]
                                                             ]
                                              ] .
@@ -451,7 +451,7 @@
                            rdfs:subClassOf :VisitorService ,
                                            [ rdf:type owl:Restriction ;
                                              owl:onProperty core:hasResultType ;
-                                             owl:hasValue xsd:string
+                                             owl:hasValue core:string
                                            ] ,
                                            [ rdf:type owl:Restriction ;
                                              owl:onProperty core:hasParameter ;
@@ -462,7 +462,7 @@
                                                                                core:basedOnClass :Message ;
                                                                                core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                   core:basedOnProperty :content ;
-                                                                                                  core:hasDatatype xsd:string
+                                                                                                  core:hasDatatype core:string
                                                                                                 ] ,
                                                                                                 [ rdf:type core:ComplexProperty ;
                                                                                                   core:basedOnProperty :hasSender ;
@@ -470,13 +470,13 @@
                                                                                                                      core:basedOnClass :Sender ;
                                                                                                                      core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                                         core:basedOnProperty core:name ;
-                                                                                                                                        core:hasDatatype xsd:string
+                                                                                                                                        core:hasDatatype core:string
                                                                                                                                       ]
                                                                                                                    ]
                                                                                                 ] ,
                                                                                                 [ rdf:type core:PrimitiveProperty ;
                                                                                                   core:basedOnProperty :timestamp ;
-                                                                                                  core:hasDatatype xsd:dateTime
+                                                                                                  core:hasDatatype core:dateTime
                                                                                                 ] ,
                                                                                                 [ rdf:type core:ComplexProperty ;
                                                                                                   core:isArray "true"^^xsd:boolean ;
@@ -485,15 +485,15 @@
                                                                                                                      core:basedOnClass :Attachment ;
                                                                                                                      core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                                         core:basedOnProperty :type ;
-                                                                                                                                        core:hasDatatype xsd:string
+                                                                                                                                        core:hasDatatype core:string
                                                                                                                                       ] ,
                                                                                                                                       [ rdf:type core:PrimitiveProperty ;
                                                                                                                                         core:basedOnProperty core:name ;
-                                                                                                                                        core:hasDatatype xsd:string
+                                                                                                                                        core:hasDatatype core:string
                                                                                                                                       ] ,
                                                                                                                                       [ rdf:type core:PrimitiveProperty ;
                                                                                                                                         core:basedOnProperty :content ;
-                                                                                                                                        core:hasDatatype xsd:base64Binary
+                                                                                                                                        core:hasDatatype core:base64Binary
                                                                                                                                       ]
                                                                                                                    ]
                                                                                                 ]
@@ -544,7 +544,7 @@
                          rdfs:subClassOf :RetailerService ,
                                          [ rdf:type owl:Restriction ;
                                            owl:onProperty core:hasResultType ;
-                                           owl:hasValue xsd:string
+                                           owl:hasValue core:string
                                          ] ,
                                          [ rdf:type owl:Restriction ;
                                            owl:onProperty core:hasParameter ;
@@ -559,11 +559,11 @@
                                                                                                                    core:basedOnClass :OrderItem ;
                                                                                                                    core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                                       core:basedOnProperty :quantity ;
-                                                                                                                                      core:hasDatatype xsd:integer
+                                                                                                                                      core:hasDatatype core:int
                                                                                                                                     ] ,
                                                                                                                                     [ rdf:type core:PrimitiveProperty ;
                                                                                                                                       core:basedOnProperty :productId ;
-                                                                                                                                      core:hasDatatype xsd:string
+                                                                                                                                      core:hasDatatype core:string
                                                                                                                                     ]
                                                                                                                  ]
                                                                                               ]
@@ -677,7 +677,7 @@
                                                                                      core:basedOnClass :Message ;
                                                                                      core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                         core:basedOnProperty :content ;
-                                                                                                        core:hasDatatype xsd:string
+                                                                                                        core:hasDatatype core:string
                                                                                                       ] ,
                                                                                                       [ rdf:type core:ComplexProperty ;
                                                                                                         core:basedOnProperty :hasSender ;
@@ -685,13 +685,13 @@
                                                                                                                            core:basedOnClass :Sender ;
                                                                                                                            core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                                               core:basedOnProperty core:name ;
-                                                                                                                                              core:hasDatatype xsd:string
+                                                                                                                                              core:hasDatatype core:string
                                                                                                                                             ]
                                                                                                                          ]
                                                                                                       ] ,
                                                                                                       [ rdf:type core:PrimitiveProperty ;
                                                                                                         core:basedOnProperty :timestamp ;
-                                                                                                        core:hasDatatype xsd:dateTime
+                                                                                                        core:hasDatatype core:dateTime
                                                                                                       ] ,
                                                                                                       [ rdf:type core:ComplexProperty ;
                                                                                                         core:isArray "true"^^xsd:boolean ;
@@ -700,15 +700,15 @@
                                                                                                                            core:basedOnClass :Attachment ;
                                                                                                                            core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                                               core:basedOnProperty :content ;
-                                                                                                                                              core:hasDatatype xsd:base64Binary
+                                                                                                                                              core:hasDatatype core:base64Binary
                                                                                                                                             ] ,
                                                                                                                                             [ rdf:type core:PrimitiveProperty ;
                                                                                                                                               core:basedOnProperty core:name ;
-                                                                                                                                              core:hasDatatype xsd:string
+                                                                                                                                              core:hasDatatype core:string
                                                                                                                                             ] ,
                                                                                                                                             [ rdf:type core:PrimitiveProperty ;
                                                                                                                                               core:basedOnProperty :type ;
-                                                                                                                                              core:hasDatatype xsd:string
+                                                                                                                                              core:hasDatatype core:string
                                                                                                                                             ]
                                                                                                                          ]
                                                                                                       ]
@@ -717,7 +717,7 @@
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
                                                    owl:onProperty core:hasResultType ;
-                                                   owl:hasValue xsd:string
+                                                   owl:hasValue core:string
                                                  ] .
 
 
@@ -736,27 +736,27 @@
                                                                                    core:basedOnClass :Promotion ;
                                                                                    core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                       core:basedOnProperty :newPrice ;
-                                                                                                      core:hasDatatype xsd:decimal
+                                                                                                      core:hasDatatype core:decimal
                                                                                                     ] ,
                                                                                                     [ rdf:type core:PrimitiveProperty ;
                                                                                                       core:basedOnProperty :start ;
-                                                                                                      core:hasDatatype xsd:dateTime
+                                                                                                      core:hasDatatype core:dateTime
                                                                                                     ] ,
                                                                                                     [ rdf:type core:PrimitiveProperty ;
                                                                                                       core:basedOnProperty :discount ;
-                                                                                                      core:hasDatatype xsd:decimal
+                                                                                                      core:hasDatatype core:decimal
                                                                                                     ] ,
                                                                                                     [ rdf:type core:PrimitiveProperty ;
                                                                                                       core:basedOnProperty core:name ;
-                                                                                                      core:hasDatatype xsd:string
+                                                                                                      core:hasDatatype core:string
                                                                                                     ] ,
                                                                                                     [ rdf:type core:PrimitiveProperty ;
                                                                                                       core:basedOnProperty core:id ;
-                                                                                                      core:hasDatatype xsd:string
+                                                                                                      core:hasDatatype core:string
                                                                                                     ] ,
                                                                                                     [ rdf:type core:PrimitiveProperty ;
                                                                                                       core:basedOnProperty :end ;
-                                                                                                      core:hasDatatype xsd:dateTime
+                                                                                                      core:hasDatatype core:dateTime
                                                                                                     ] ,
                                                                                                     [ rdf:type core:ComplexProperty ;
                                                                                                       core:basedOnProperty :referencesProduct ;
@@ -764,19 +764,19 @@
                                                                                                                          core:basedOnClass :Product ;
                                                                                                                          core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                                             core:basedOnProperty core:name ;
-                                                                                                                                            core:hasDatatype xsd:string
+                                                                                                                                            core:hasDatatype core:string
                                                                                                                                           ] ,
                                                                                                                                           [ rdf:type core:PrimitiveProperty ;
                                                                                                                                             core:basedOnProperty :picture ;
-                                                                                                                                            core:hasDatatype xsd:base64Binary
+                                                                                                                                            core:hasDatatype core:base64Binary
                                                                                                                                           ] ,
                                                                                                                                           [ rdf:type core:PrimitiveProperty ;
                                                                                                                                             core:basedOnProperty :price ;
-                                                                                                                                            core:hasDatatype xsd:decimal
+                                                                                                                                            core:hasDatatype core:decimal
                                                                                                                                           ] ,
                                                                                                                                           [ rdf:type core:PrimitiveProperty ;
                                                                                                                                             core:basedOnProperty core:id ;
-                                                                                                                                            core:hasDatatype xsd:string
+                                                                                                                                            core:hasDatatype core:string
                                                                                                                                           ]
                                                                                                                        ]
                                                                                                     ]

@@ -12,7 +12,7 @@
                                              
                                              rdfs:label "symbIoTe Core Information Model"@en ;
                                              
-                                             owl:versionInfo "v 2.0.0 2017/09/04 12:00:00"^^xsd:string ;
+                                             owl:versionInfo "v 2.0.0 2017/09/13 12:00:00"^^xsd:string ;
                                              
                                              rdfs:comment "Core Information Model of the symbIoTe project."@en ;
                                              
@@ -90,6 +90,10 @@
 :hasDatatype rdf:type owl:ObjectProperty ;
              
              rdfs:range :Datatype .
+			 
+###  http://www.symbiote-h2020.eu/ontology/core#hasBaseDatatype
+
+:hasBaseDatatype rdf:type owl:DataProperty .
 
 
 
@@ -342,7 +346,7 @@
 
 :step rdf:type owl:DatatypeProperty ;
 
-      rdfs:range xsd:double .
+      rdfs:range xsd:decimal .
 
 
 
@@ -360,7 +364,7 @@
 
 geo:alt rdf:type owl:DatatypeProperty ,
                  owl:FunctionalProperty ;
-        rdfs:range xsd:double .
+        rdfs:range xsd:decimal .
 
 
 
@@ -368,7 +372,7 @@ geo:alt rdf:type owl:DatatypeProperty ,
 
 geo:lat rdf:type owl:DatatypeProperty ,
                  owl:FunctionalProperty ;
-        rdfs:range xsd:double .
+        rdfs:range xsd:decimal .
 
 
 
@@ -376,7 +380,7 @@ geo:lat rdf:type owl:DatatypeProperty ,
 
 geo:long rdf:type owl:DatatypeProperty ,
                   owl:FunctionalProperty ;
-         rdfs:range xsd:double .
+         rdfs:range xsd:decimal .
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
 		 
@@ -477,6 +481,17 @@ geo:SpatialThing rdf:type owl:Class .
                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onDataRange xsd:boolean
                           ] .
+						  
+###  http://www.symbiote-h2020.eu/ontology/core#PrimitiveDatatype
+
+:PrimitiveDatatype rdf:type owl:Class ;
+          
+          rdfs:subClassOf Datatype,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasBaseDatatype ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass xsd:boolean
+                          ] .						  
 
 
 
@@ -706,7 +721,7 @@ geo:SpatialThing rdf:type owl:Class .
                    rdfs:subClassOf :DataProperty ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasDatatype ;
-                                     owl:onClass rdfs:Datatype ;
+                                     owl:onClass rdfs:PrimitiveDatatype ;
                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
                                    ] ,
                                    [ rdf:type owl:Restriction ;
@@ -747,12 +762,12 @@ geo:SpatialThing rdf:type owl:Class .
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :min ;
                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onDataRange xsd:double
+                                    owl:onDataRange xsd:decimal
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :max ;
                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onDataRange xsd:double
+                                    owl:onDataRange xsd:decimal
                                   ] .
 
 
@@ -860,7 +875,7 @@ geo:SpatialThing rdf:type owl:Class .
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :step ;
                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onDataRange xsd:double
+                                   owl:onDataRange xsd:decimal
                                  ] .
 
 
@@ -898,17 +913,17 @@ geo:SpatialThing rdf:type owl:Class .
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty geo:long ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onDataRange xsd:double
+                                 owl:onDataRange xsd:decimal
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty geo:alt ;
                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onDataRange xsd:double
+                                 owl:onDataRange xsd:decimal
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty geo:lat ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onDataRange xsd:double
+                                 owl:onDataRange xsd:decimal
                                ] .
 
 
@@ -924,12 +939,6 @@ geo:SpatialThing rdf:type owl:Class .
                                owl:onDataRange xsd:string
                              ] .
 
-
-
-###  http://www.w3.org/2000/01/rdf-schema#Datatype
-
-rdfs:Datatype rdf:type owl:Class;
-	rdfs:subClassOf :Datatype .
 
 
 ###  http://www.w3.org/2006/time#Instant
@@ -957,6 +966,266 @@ time:Interval rdfs:subClassOf time:TemporalEntity ,
                               ] .
 
 
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.symbiote-h2020.eu/ontology/core#boolean
+
+:boolean rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:boolean ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#booleanArray
+
+:booleanArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:boolean ;
+				  :isArray "true"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#byte
+
+:byte rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:byte ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#byteArray
+
+:byteArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:byte ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#short
+
+:short rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:short ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#shortArray
+
+:shortArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:short ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#int
+
+:int rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:int ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#intArray
+
+:intArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:int ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#long
+
+:long rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:long ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#longArray
+
+:longArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:long ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#unsignedByte
+
+:unsignedByte rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:unsignedByte ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#unsignedByteArray
+
+:unsignedByteArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:unsignedByte ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#unsignedShort
+
+:unsignedShort rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:unsignedShort ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#unsignedShortArray
+
+:unsignedShortArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:unsignedShort ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#unsignedInt
+
+:unsignedInt rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:unsignedInt ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#unsignedIntArray
+
+:unsignedIntArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:unsignedInt ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#unsignedLong
+
+:unsignedLong rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:unsignedLong ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#unsignedLongArray
+
+:unsignedLongArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:unsignedLong ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#decimal
+
+:decimal rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:decimal ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#decimalArray
+
+:decimalArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:decimal ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#float
+
+:float rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:float ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#floatArray
+
+:floatArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:float ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#double
+
+:double rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:double ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#doubleArray
+
+:doubleArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:double ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#string
+
+:string rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:string ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#stringArray
+
+:stringArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:string ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#langString
+
+:langString rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype rdf:langString ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#langStringArray
+
+:langStringArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype rdf:langString ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#hexBinary
+
+:hexBinary rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:hexBinary ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#hexBinaryArray
+
+:hexBinaryArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:hexBinary ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#base64Binary
+
+:base64Binary rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:base64Binary ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#base64BinaryArray
+
+:base64BinaryArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:base64Binary ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#dateTime
+
+:dateTime rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:dateTime ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#dateTimeArray
+
+:dateTimeArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:dateTime ;
+				  :isArray "true"^^xsd:boolean .
+
+###  http://www.symbiote-h2020.eu/ontology/core#dateTimeStamp
+
+:dateTimeStamp rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:dateTimeStamp ;
+				  :isArray "false"^^xsd:boolean .
+				  
+###  http://www.symbiote-h2020.eu/ontology/core#dateTimeStampArray
+
+:dateTimeStampArray rdf:type :PrimitiveDatatype ,
+                  owl:NamedIndividual ;
+                  :hasBaseDatatype xsd:dateTimeStamp ;
+				  :isArray "true"^^xsd:boolean .
+
+				  
 
 ###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
 

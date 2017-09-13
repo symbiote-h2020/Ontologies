@@ -12,7 +12,7 @@
                                             
                                             rdfs:label "symbIoTe Smart Yachting Best Practice Information Model"@en ;
                                             
-                                            owl:versionInfo "v2.0.0 2017/09/04 12:00:00"^^xsd:string ;
+                                            owl:versionInfo "v2.0.0 2017/09/13 12:00:00"^^xsd:string ;
                                             
                                             rdfs:comment "Smart Yachting part of the Best Practice Information Model of symbIoTe."@en ;
                                             
@@ -567,7 +567,7 @@ schema:Winery rdf:type :PotentialSupplierOrganization ,
                                                       core:hasProperty [ rdf:type core:PrimitiveProperty ;
 																		 core:isArray "true"^^xsd:boolean ;
                                                                          core:basedOnProperty core:description ;
-                                                                         core:hasDatatype rdf:langString
+                                                                         core:hasDatatype core:langString
                                                                        ] ,
                                                                        [ rdf:type core:ComplexProperty ;
                                                                          core:basedOnProperty :hasPotentialSupplier ;
@@ -576,7 +576,7 @@ schema:Winery rdf:type :PotentialSupplierOrganization ,
                                                                                             core:basedOnClass :PotentialSupplierOrganization ;
                                                                                             core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                core:basedOnProperty core:name ;
-                                                                                                               core:hasDatatype xsd:string
+                                                                                                               core:hasDatatype core:string
                                                                                                              ]
                                                                                           ]
                                                                        ]
@@ -600,18 +600,18 @@ schema:Winery rdf:type :PotentialSupplierOrganization ,
                                                                                         core:basedOnClass :RoutePoint ;
                                                                                         core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                            core:basedOnProperty :hint ;
-                                                                                                           core:hasDatatype xsd:string
+                                                                                                           core:hasDatatype core:string
                                                                                                          ] ,
                                                                                                          [ rdf:type core:PrimitiveProperty ;
-                                                                                                           core:hasDatatype xsd:double ;
+                                                                                                           core:hasDatatype core:decimal ;
                                                                                                            core:basedOnProperty geo:lat
                                                                                                          ] ,
                                                                                                          [ rdf:type core:PrimitiveProperty ;
                                                                                                            core:basedOnProperty :timestamp ;
-                                                                                                           core:hasDatatype xsd:dateTime
+                                                                                                           core:hasDatatype core:dateTime
                                                                                                          ] ,
                                                                                                          [ rdf:type core:PrimitiveProperty ;
-                                                                                                           core:hasDatatype xsd:double ;
+                                                                                                           core:hasDatatype core:decimal ;
                                                                                                            core:basedOnProperty geo:long
                                                                                                          ]
                                                                                       ]
@@ -621,7 +621,7 @@ schema:Winery rdf:type :PotentialSupplierOrganization ,
                              core:hasParameter [ rdf:type core:Parameter ;
                                                  core:mandatory "false"^^xsd:boolean ;
                                                  core:name "since"^^xsd:string ;
-                                                 core:hasDatatype xsd:datetime
+                                                 core:hasDatatype core:datetime
                                                ] .
 
 
@@ -643,7 +643,7 @@ schema:Winery rdf:type :PotentialSupplierOrganization ,
                                                                                              core:basedOnClass :PotentialSupplierOrganization ;
                                                                                              core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                 core:basedOnProperty core:name ;
-                                                                                                                core:hasDatatype xsd:string
+                                                                                                                core:hasDatatype core:string
                                                                                                               ]
                                                                                            ]
                                                                         ] ,
@@ -653,18 +653,18 @@ schema:Winery rdf:type :PotentialSupplierOrganization ,
                                                                                              core:basedOnClass :Fault ;
                                                                                              core:hasProperty [ rdf:type core:PrimitiveProperty ;
                                                                                                                 core:basedOnProperty core:name ;
-                                                                                                                core:hasDatatype xsd:string
+                                                                                                                core:hasDatatype core:string
                                                                                                               ]
                                                                                            ]
                                                                         ] ,
                                                                         [ rdf:type core:PrimitiveProperty ;
                                                                           core:basedOnProperty :occurance ;
-                                                                          core:hasDatatype xsd:dateTime
+                                                                          core:hasDatatype core:dateTime
                                                                         ] ,
                                                                         [ rdf:type core:PrimitiveProperty ;
 																		 core:isArray "true"^^xsd:boolean ;
                                                                          core:basedOnProperty core:description ;
-                                                                         core:hasDatatype rdf:langString
+                                                                         core:hasDatatype core:langString
                                                                        ]
                                                      ] .
 
