@@ -20,7 +20,7 @@
 @prefix qu-quantity: <http://purl.oclc.org/NET/ssnx/qu/quantity#> .
 @base <http://www.symbiote-h2020.eu/ontology/bim#> .
 
-<http://www.symbiote-h2020.eu/ontology/bim#> rdf:type owl:Ontology ;
+<http://www.symbiote-h2020.eu/ontology/bim> rdf:type owl:Ontology ;
                                             
                                             rdfs:label "symbIoTe Best Practice Information Model"@en ;
                                             
@@ -29,9 +29,9 @@
                                             rdfs:comment "Best Practice Information Model of symbIoTe."@en ;
                                             
                                             owl:imports <http://purl.oclc.org/NET/ssnx/qu/qu-rec20> ,
-                                                        core: ;
+                                                        <http://www.symbiote-h2020.eu/ontology/core> ;
                                             
-                                            owl:versionIRI <http://www.symbiote-h2020.eu/ontology/bim/1.0.1#> ;
+                                            owl:versionIRI <http://www.symbiote-h2020.eu/ontology/bim/1.0.1> ;
                                             
                                             owl:imports cnt: .
 
