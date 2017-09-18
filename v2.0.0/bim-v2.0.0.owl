@@ -10,7 +10,6 @@
 @prefix bim-sr: <http://www.symbiote-h2020.eu/ontology/bim/smartresidence#> .
 @prefix bim-ss: <http://www.symbiote-h2020.eu/ontology/bim/smartstadium#> .
 @prefix bim-sy: <http://www.symbiote-h2020.eu/ontology/bim/smartyachting#> .
-@base <http://www.symbiote-h2020.eu/ontology/bim#> .
 
 <http://www.symbiote-h2020.eu/ontology/bim> rdf:type owl:Ontology ;
                                             

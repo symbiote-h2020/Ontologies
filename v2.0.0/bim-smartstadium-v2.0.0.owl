@@ -4,7 +4,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix core: <http://www.symbiote-h2020.eu/ontology/core#> .
-@base <http://www.symbiote-h2020.eu/ontology/bim/smartstadium#> .
 
 <http://www.symbiote-h2020.eu/ontology/bim/smartstadium> rdf:type owl:Ontology ;
                                             

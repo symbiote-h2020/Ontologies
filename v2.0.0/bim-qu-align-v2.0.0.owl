@@ -7,7 +7,6 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix qu-unit: <http://purl.oclc.org/NET/ssnx/qu/unit#> .
 @prefix qu-quantity: <http://purl.oclc.org/NET/ssnx/qu/quantity#> .
-@base <http://www.symbiote-h2020.eu/ontology/bim/qu-align#> .
 
 <http://www.symbiote-h2020.eu/ontology/bim/qu-align> rdf:type owl:Ontology ;
                                             

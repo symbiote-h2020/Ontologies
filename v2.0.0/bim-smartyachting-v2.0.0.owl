@@ -6,7 +6,6 @@
 @prefix core: <http://www.symbiote-h2020.eu/ontology/core#> .
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix schema: <http://schema.org/> .
-@base <http://www.symbiote-h2020.eu/ontology/bim/smartyachting#> .
 
 <http://www.symbiote-h2020.eu/ontology/bim/smartyachting> rdf:type owl:Ontology ;
                                             

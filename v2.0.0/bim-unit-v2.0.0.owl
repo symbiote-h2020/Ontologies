@@ -9,7 +9,6 @@
 @prefix qu-unit: <http://purl.oclc.org/NET/ssnx/qu/unit#> .
 @prefix qu-quantity: <http://purl.oclc.org/NET/ssnx/qu/quantity#> .
 @prefix property: <http://www.symbiote-h2020.eu/ontology/bim/property#> .
-@base <http://www.symbiote-h2020.eu/ontology/bim/unit#> .
 
 <http://www.symbiote-h2020.eu/ontology/bim/unit> rdf:type owl:Ontology ;
                                             

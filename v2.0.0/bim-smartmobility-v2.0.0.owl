@@ -6,7 +6,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix core: <http://www.symbiote-h2020.eu/ontology/core#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.symbiote-h2020.eu/ontology/bim/smartmobility#> .
 
 <http://www.symbiote-h2020.eu/ontology/bim/smartmobility> rdf:type owl:Ontology ;
                                             

@@ -6,7 +6,6 @@
 @prefix core: <http://www.symbiote-h2020.eu/ontology/core#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix qu-quantity: <http://purl.oclc.org/NET/ssnx/qu/quantity#> .
-@base <http://www.symbiote-h2020.eu/ontology/bim/smartresidence#> .
 
 <http://www.symbiote-h2020.eu/ontology/bim/smartresidence> rdf:type owl:Ontology ;
                                             
