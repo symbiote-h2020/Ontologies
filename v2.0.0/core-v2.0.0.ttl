@@ -11,7 +11,7 @@
                                              
                                              rdfs:label "symbIoTe Core Information Model"@en ;
                                              
-                                             owl:versionInfo "v 2.0.0 2017/09/13 12:00:00"^^xsd:string ;
+                                             owl:versionInfo "v 2.0.0 2017/10/12 12:00:00"^^xsd:string ;
                                              
                                              rdfs:comment "Core Information Model of the symbIoTe project."@en ;
                                              
@@ -92,7 +92,7 @@
 			 
 ###  http://www.symbiote-h2020.eu/ontology/core#hasBaseDatatype
 
-:hasBaseDatatype rdf:type owl:DataProperty .
+:hasBaseDatatype rdf:type owl:ObjectProperty .
 
 
 
@@ -435,7 +435,7 @@ geo:SpatialThing rdf:type owl:Class .
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :basedOnClass ;
                                    owl:onClass owl:Class ;
-                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :hasProperty ;
@@ -458,7 +458,7 @@ geo:SpatialThing rdf:type owl:Class .
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :basedOnProperty ;
                                    owl:onClass owl:ObjectProperty ;
-                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
                                  ] ;
                  
                  owl:disjointWith :PrimitiveProperty .
@@ -467,8 +467,13 @@ geo:SpatialThing rdf:type owl:Class .
 
 ###  http://www.symbiote-h2020.eu/ontology/core#DataProperty
 
-:DataProperty rdf:type owl:Class .
+:DataProperty rdf:type owl:Class ;
 
+					rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty :name ;
+                                     owl:onDataRange xsd:string ;
+                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                   ] .
 
 
 ###  http://www.symbiote-h2020.eu/ontology/core#Datatype
@@ -485,11 +490,11 @@ geo:SpatialThing rdf:type owl:Class .
 
 :PrimitiveDatatype rdf:type owl:Class ;
           
-          rdfs:subClassOf Datatype,
+          rdfs:subClassOf :Datatype,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasBaseDatatype ;
                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass xsd:boolean
+                            owl:onClass rdfs:Datatype
                           ] .						  
 
 
@@ -726,7 +731,7 @@ geo:SpatialThing rdf:type owl:Class .
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :basedOnProperty ;
                                      owl:onClass owl:DatatypeProperty ;
-                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasRestriction ;

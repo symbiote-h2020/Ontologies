@@ -19,11 +19,12 @@
                                             
                                             rdfs:comment "Best Practice Information Model of symbIoTe."@en ;
                                             
-                                            owl:imports <http://www.symbiote-h2020.eu/ontology/bim/unit/2.0.0> ,
+                                            owl:imports <http://www.symbiote-h2020.eu/ontology/core/2.0.0> ,
+														<http://www.symbiote-h2020.eu/ontology/bim/unit/2.0.0> ,
 														<http://www.symbiote-h2020.eu/ontology/bim/property/2.0.0> ,
-                                                        <http://www.symbiote-h2020.eu/ontology/bim/smartmobility/2.0.0> , 
-                                                        <http://www.symbiote-h2020.eu/ontology/bim/smartresidence/2.0.0> ,
-                                                        <http://www.symbiote-h2020.eu/ontology/bim/smartstadium/2.0.0> ,
+														<http://www.symbiote-h2020.eu/ontology/bim/smartmobility/2.0.0> , 
+														<http://www.symbiote-h2020.eu/ontology/bim/smartresidence/2.0.0> ,
+														<http://www.symbiote-h2020.eu/ontology/bim/smartstadium/2.0.0> ,
 														<http://www.symbiote-h2020.eu/ontology/bim/smartyachting/2.0.0> ;
                                             
                                             owl:versionIRI <http://www.symbiote-h2020.eu/ontology/bim/2.0.0> .

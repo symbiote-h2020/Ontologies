@@ -16,7 +16,7 @@
                                              
                                              rdfs:comment "Meta Information Model of the symbIoTe project."@en ;
                                              
-                                             owl:imports align: ,
+                                             owl:imports <http://www.symbiote-h2020.eu/ontology/cache/align> ,
 														 <http://www.symbiote-h2020.eu/ontology/core/2.0.0> ;
                                              
                                              owl:versionIRI <http://www.symbiote-h2020.eu/ontology/meta/2.0.0> .
