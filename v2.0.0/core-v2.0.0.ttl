@@ -11,7 +11,7 @@
                                              
                                              rdfs:label "symbIoTe Core Information Model"@en ;
                                              
-                                             owl:versionInfo "v 2.0.0 2017/10/12 12:00:00"^^xsd:string ;
+                                             owl:versionInfo "v 2.0.0 2017/10/25 12:00:00"^^xsd:string ;
                                              
                                              rdfs:comment "Core Information Model of the symbIoTe project."@en ;
                                              
@@ -849,11 +849,6 @@ geo:SpatialThing rdf:type owl:Class .
                            owl:onProperty :hasParameter ;
                            owl:onClass :Parameter ;
                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :name ;
-                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                           owl:onDataRange xsd:string
                          ] .
 
 

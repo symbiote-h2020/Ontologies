@@ -10,12 +10,13 @@
 @prefix bim-sr: <http://www.symbiote-h2020.eu/ontology/bim/smartresidence#> .
 @prefix bim-ss: <http://www.symbiote-h2020.eu/ontology/bim/smartstadium#> .
 @prefix bim-sy: <http://www.symbiote-h2020.eu/ontology/bim/smartyachting#> .
+@prefix bim-pv: <http://www.symbiote-h2020.eu/ontology/bim/parametervalues#> .
 
 <http://www.symbiote-h2020.eu/ontology/bim> rdf:type owl:Ontology ;
                                             
                                             rdfs:label "symbIoTe Best Practice Information Model"@en ;
                                             
-                                            owl:versionInfo "v2.0.0 2017/09/04 12:00:00"^^xsd:string ;
+                                            owl:versionInfo "v2.0.0 2017/10/25 12:00:00"^^xsd:string ;
                                             
                                             rdfs:comment "Best Practice Information Model of symbIoTe."@en ;
                                             
@@ -26,6 +27,7 @@
 														<http://www.symbiote-h2020.eu/ontology/bim/smartresidence/2.0.0> ,
 														<http://www.symbiote-h2020.eu/ontology/bim/smartstadium/2.0.0> ,
 														<http://www.symbiote-h2020.eu/ontology/bim/smartyachting/2.0.0> ;
+														<http://www.symbiote-h2020.eu/ontology/bim/parametervalues/2.0.0> ;
                                             
                                             owl:versionIRI <http://www.symbiote-h2020.eu/ontology/bim/2.0.0> .
 
