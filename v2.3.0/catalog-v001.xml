@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2003/01/geo/wgs84_pos#" uri="../cache/wgs84_pos.rdf"/>
+    <uri id="User Entered Import Resolution" name="http://knowledgeweb.semanticweb.org/heterogeneity/alignment" uri="../cache/align.owl"/>
+	<uri id="User Entered Import Resolution" name="http://www.symbiote-h2020.eu/ontology/bim/parametervalues/2.3.0" uri="bim-parametervalues-v2.3.0.ttl"/>
+	<uri id="User Entered Import Resolution" name="http://www.symbiote-h2020.eu/ontology/bim/property/2.3.0" uri="bim-property-v2.3.0.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.symbiote-h2020.eu/ontology/bim/qu-align/2.3.0" uri="bim-qu-align-v2.3.0.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.symbiote-h2020.eu/ontology/bim/smartmobility/2.3.0" uri="bim-smartmobility-v2.3.0.ttl"/>
+	<uri id="User Entered Import Resolution" name="http://www.symbiote-h2020.eu/ontology/bim/smartresidence/2.3.0" uri="bim-smartresidence-v2.3.0.ttl"/>
+	<uri id="User Entered Import Resolution" name="http://www.symbiote-h2020.eu/ontology/bim/smartstadium/2.3.0" uri="bim-smartstadium-v2.3.0.ttl"/>
+	<uri id="User Entered Import Resolution" name="http://www.symbiote-h2020.eu/ontology/bim/smartyachting/2.3.0" uri="bim-smartyachting-v2.3.0.ttl"/>	
+    <uri id="User Entered Import Resolution" name="http://www.symbiote-h2020.eu/ontology/bim/unit/2.3.0" uri="bim-unit-v2.3.0.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.symbiote-h2020.eu/ontology/bim/2.3.0" uri="bim-v2.3.0.ttl"/>    
+    <uri id="User Entered Import Resolution" name="http://www.symbiote-h2020.eu/ontology/core/2.3.0" uri="core-v2.3.0.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.symbiote-h2020.eu/ontology/meta/2.3.0" uri="meta-v2.3.0.ttl"/>
+</catalog>
